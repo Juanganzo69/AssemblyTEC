@@ -1,0 +1,4 @@
+{
+	"cmd" : ["~/jasmin.sh ${file_name} ${file_base_name}"],
+	"shell": true
+}
