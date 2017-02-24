@@ -1,0 +1,105 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - ifgt</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_ifge.html">prev</A>
+ <A HREF="ref-ifle.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ifgt</H6>
+<b></b><p>
+<b><center></b><i> jump if greater than zero</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    ifgt &lt;label&gt;
+</font></pre>
+&lt;label&gt;
+is a label name. To define the location of the label, use the &lt;label&gt;
+name followed by a colon:
+
+<pre><font size=-1>
+&lt;label&gt;:
+</font></pre>
+&lt;label&gt;
+then becomes associated the address of the following instruction. Labels can
+only be assigned one location in a method. On the other hand, a single
+&lt;label&gt; can be the target of multiple branch instructions.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>ifgt</tt> pops the top int off the operand stack. If the int is
+greater than zero, execution branches to the address (<i>pc</i> +
+<i>branchoffset</i>), where <i>pc</i> is the address of the <tt>ifgt</tt>
+opcode in the bytecode and <i>branchoffset</i> is a 16-bit signed integer
+parameter following the <tt>ifgt</tt> opcode in the bytecode. If the int on the
+stack does is less than or equal to zero, execution continues at the next
+instruction.<p>
+If you are using Jasmin, <i>branchoffset</i> is computed for you from the
+address of &lt;label&gt;.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+    iload_1         ; push the int value in local variable 1 onto the stack
+    ifgt Label      ; if the value on the stack is greater than zero, jump to Label
+    return          ; return if local variable 1 is less than or equal to zero
+Label:
+    ; execution continues here if local variable 1 is greater than zero...
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">ifgt
+opcode = 0x9D (157)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s2 
+<BR></TD>
+<TD colspan=1 align="left"><i>branchoffset</i>
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>ifnull</tt>, <tt>ifeq</tt>, <tt>ifle</tt>, <tt>ifne</tt>,
+<tt>ifnonnull</tt>, <tt>iflt</tt>, <tt>ifge</tt><p>
+<b>Notes</b><p>
+<b></b>Addresses are measured in bytes from the start of the bytecode (i.e.
+address 0 is the first byte in the bytecode of the currently executing
+method).<p>
+<P><hr size=4>
+<A HREF="ref-_ifge.html">prev</A>
+ <A HREF="ref-ifle.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,79 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  f2d</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_dup_x2.html">prev</A>
+ <A HREF="ref-_f2i.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ f2d</H6>
+<b></b><p>
+<b><center></b><i> convert float to double</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    f2d
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">float
+
+<BR></TD>
+<TD colspan=1 align="left">double-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">double-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Pops a single precision float off of the stack, casts it to a double,
+and pushes the double-precision floating point number back onto the stack. This
+conversion is done in accordance with IEEE 754 specifications. Note that
+nothing is lost in this conversion. If the original value is NaN, the result
+will be NaN. Similarly, if the original value is an infinity, the result will
+be the same infinity.  <p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">f2d
+opcode = 0x8D (141)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>f2i</tt>, <tt>f2l</tt><p>
+<P><hr size=4>
+<A HREF="ref-_dup_x2.html">prev</A>
+ <A HREF="ref-_f2i.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

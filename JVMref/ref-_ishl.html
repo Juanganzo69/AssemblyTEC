@@ -1,0 +1,92 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  ishl</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--36.html">prev</A>
+ <A HREF="ref-_ishr.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ ishl</H6>
+<b></b><p>
+<b><center></b><i> integer shift left</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    ishl
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1
+
+<BR></TD>
+<TD colspan=1 align="left">result
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Pops two ints off the stack. Shifts <i>value2</i> left by the amount
+indicated in the five low bits of <i>value1</i>. The int result is then pushed
+back onto the stack.<p>
+This is the same as computing the expression:<p>
+     x * 2<sup>s</sup><p>
+<sup>where s is value1 and x is value2. </sup><p>
+<b>Example</b>
+
+<pre><font size=-1>
+; This is like the Java code:
+;      int x;
+;      x &lt;&lt;= 3;
+;
+iload_1          ; push integer in local variable 1 onto stack
+iconst_3         ; push the integer 3 onto the stack
+ishl             ; shift left
+istore_1         ; store the result in local variable 1
+
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">ishl
+opcode = 0x78 (120)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>ishr</tt>, <tt>iushr</tt>, <tt>lshl</tt>, <tt>lshr</tt>,
+<tt>lushr</tt>, <tt>iand</tt>, <tt>land</tt>, <tt>ior</tt>, <tt>lor</tt>,
+<tt>ixor</tt>, <tt>lxor</tt><p>
+<P><hr size=4>
+<A HREF="ref--36.html">prev</A>
+ <A HREF="ref-_ishr.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

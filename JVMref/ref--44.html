@@ -1,0 +1,115 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  monitorenter</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_lxor.html">prev</A>
+ <A HREF="ref--45.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ monitorenter</H6>
+<b></b><p>
+<b><center></b><i>enter synchronized region of code</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    monitorenter
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>The <tt>monitorenter</tt>/<tt>monitorexit</tt> mechanism is used by the
+Java <tt>synchronized</tt> statement to coordinate access to an object among
+multiple threads. For example, when you write in Java code:
+
+<pre><font size=-1>
+static void Sort(int [] array) {
+    // synchronize this operation so that some other thread can't
+    // manipulate the array while we are sorting it. This assumes that other
+    // threads also synchronize their accesses to the array.
+    synchronized(array) {
+        // now sort elements in array
+    }
+}
+</font></pre>
+then
+JVM code like the following is generated:
+
+<pre><font size=-1>
+.method static Sort([I)V
+    aload_0
+    monitorenter    ; lock object in local variable 0 
+
+    ; now sort elements in array
+
+    aload_0
+    monitorexit      ; finished with object in local variable 0
+    return
+.end method
+</font></pre>
+<tt>monitorenter</tt>
+obtains an exclusive lock on the object referenced by <i>objectref.</i> There
+are three possible scenarios:<p>
+If no other thread has locked the object, a new lock is established on the
+object, and execution continues at the next instruction. <p>
+If the object is currently locked by another thread, <tt>monitorenter</tt>
+blocks, waiting for the other thread to unlock the object. <p>
+If the current thread already owns a lock on the object, a counter is
+incremented - the lock will only be released when the counter returns to zero
+(see <tt>monitorexit</tt>).<p>
+<b>Exceptioms</b><p>
+<b></b>NullPointerException - the object reference on the stack is
+<tt>null</tt>. <p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">monitorenter
+opcode = 0xC2 (194)
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>monitorexit</tt><p>
+The Java Language Specification provides a full account of how locks and
+threads are managed.<p>
+<b>Notes</b><p>
+<b></b>1. Methods which are marked as <tt>synchronized</tt> implicitly perform
+a <tt>monitorenter</tt> when invoked, and a <tt>monitorexit</tt> when they
+return.<p>
+2. Java's wait(), notify() and notifyAll() methods also interact with locks on
+objects. <p>
+<P><hr size=4>
+<A HREF="ref-_lxor.html">prev</A>
+ <A HREF="ref--45.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

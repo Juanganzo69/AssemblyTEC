@@ -1,0 +1,106 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  dup_x2</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_dup_x1.html">prev</A>
+ <A HREF="ref-_f2d.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ dup_x2</H6>
+<b></b><p>
+<b><center></b><i> duplicate top stack word and insert beneath third word</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    dup_x2
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">word1
+<BR></TD>
+<TD colspan=1 align="left">word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">word2
+
+<BR></TD>
+<TD colspan=1 align="left">word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">word3
+
+<BR></TD>
+<TD colspan=1 align="left">word3
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Duplicates the top single-word stack item inserts the duplicate three
+words down.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+dconst_0
+bipush 100
+; stack now contains:
+;     0.0 | double-word1
+;     0.0 | double-word2
+;     100   integer
+
+dup_x2
+; stack now contains:
+;     100   integer1
+;     0.0 | double-word1
+;     0.0 | double-word2
+;     100   integer1
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">dup_x2
+= 0x5B (91)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>dup</tt>, <tt>dup2</tt>, <tt>dup_x1</tt>, <tt>dup2_x2</tt><p>
+<b> Notes</b><p>
+<b></b>This instruction cannot be used if the top item on the stack is a
+two-word item (i.e. a long or a double-precision float). Use <tt>dup2</tt>,
+<tt>dup2_x1</tt> or <tt>dup2_x2</tt> instead.<p>
+<P><hr size=4>
+<A HREF="ref-_dup_x1.html">prev</A>
+ <A HREF="ref-_f2d.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

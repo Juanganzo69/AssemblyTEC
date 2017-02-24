@@ -1,0 +1,133 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - anewarray</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-aload__l.html">prev</A>
+ <A HREF="ref-.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+anewarray</H6>
+<b></b><p>
+<b><center></b><i>allocate new array for objects</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+   anewarray &lt;type&gt;
+
+</font></pre>
+<tt>&lt;type&gt;</tt>
+is either the name of a class or interface, e.g. <tt>java/lang/String</tt>, or,
+to create the first dimension of a multidimensional array,
+<tt>&lt;type&gt;</tt> can be an array type descriptor, e.g.
+<tt>[Ljava/lang/String;</tt><p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">size
+<BR></TD>
+<TD colspan=1 align="left">arrayref
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>Description</b><p>
+<b></b><tt>anewarray</tt> allocates a new array for holding object references.
+It pops an int, <i>size</i>, off the stack and constructs a new array capable
+of holding <i>size</i> object references of the type indicated by &lt;type&gt;.
+<p>
+&lt;type&gt; indicates what types of object references are to be stored in the
+array (see aastore). It is the name of a class or an interface, or an array
+type descriptor. If it is <tt>java/lang/Object</tt>, for example, then any type
+of object reference can be stored in the array. &lt;type&gt; is resolved at
+runtime to a Java class, interface or array. See Chapter 7 for a discussion of
+how classes are resolved.<p>
+A reference to the new array is pushed onto the stack. Entries in the new array
+are initially set to <tt>null</tt>.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; Allocate a 10-element array of for holding references to
+; Threads. This is like the Java code:
+;      Thread x[] = new Thread[10];
+
+bipush 10
+anewarray java/lang/Thread
+astore_1    ; store the new array in local variable 1
+
+; Allocate a multi-dimensional array like:
+;       new String[2][5]
+
+; using anewarray. First, allocate new 2-element array for holding 
+; arrays of strings and store it in local variable 1.
+iconst_2
+anewarray [Ljava/lang/String;      ; type descriptor for array-of-String
+astore_1
+
+; next, allocate first array of String[5] and store it in index 0
+aload_1
+iconst_0
+bipush 5
+anewarray java/lang/String
+aastore
+
+; finally, allocate second array of String[5] and store it in index 1
+aload_1
+iconst_1
+bipush 5
+anewarray java/lang/String
+aastore
+
+</font></pre>
+<b>Exceptions</b><p>
+<b></b>NegativeArraySizeException - <i>size</i> is less than zero<p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, immediately after the <tt>anewarray</tt> opcode there is a
+16-bit unsigned integer <i>index</i>. This is the index of an entry in the
+constant pool that is tagged a CONSTANT_Class entry. The name field of this
+entry is given by &lt;type&gt; parameter in Jasmin.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">anewarray
+opcode = 0xBD (189)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>newarray</tt>, <tt>multianewarray</tt>, <tt>new</tt><p>
+<b> Notes</b><p>
+<b></b>It is more efficient to use <tt>multianewarray</tt> to allocate
+multi-dimensional arrays.<p>
+<P><hr size=4>
+<A HREF="ref-aload__l.html">prev</A>
+ <A HREF="ref-.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,81 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  monitorexit</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--44.html">prev</A>
+ <A HREF="ref--46.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ monitorexit</H6>
+<b></b><p>
+<b><center></b><i>leave synchronized region of code</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    monitorexit
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>This releases an exclusive lock that was previously obtained using
+<tt>monitorenter</tt> for the object <i>objectref</i>. If other threads are
+waiting for the object to become unlocked, one of the waiting threads will be
+able to acquire a lock on the object and proceed.<p>
+Note that a single thread can lock an object several times - the runtime system
+maintains a count of the number of times that the object was locked by the
+current thread, and only unlocks the object when the counter reaches zero (i.e.
+when the number of <tt>monitorenters</tt> and <tt>monitorexits</tt> applied to
+a given object are equal). <p>
+The <tt>monitorenter</tt>/<tt>monitorexit</tt> mechanism is used by the Java
+<tt>synchronized</tt> statement to coordinate access to an object among
+multiple threads. <p>
+<b>Exceptioms</b><p>
+<b></b>NullPointerException - <i>objectref</i> is <tt>null</tt>. <p>
+IllegalMonitorStateException - <i>objectref</i> was not previously locked by
+the current thread. <p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+
+<BR></TD>
+<TD colspan=1 align="left">monitorexit
+opcode = 0xC3 (195)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>monitorenter</tt><p>
+<P><hr size=4>
+<A HREF="ref--44.html">prev</A>
+ <A HREF="ref--46.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

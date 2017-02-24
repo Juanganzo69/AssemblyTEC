@@ -1,0 +1,204 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  invokeinterface</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--31.html">prev</A>
+ <A HREF="ref--33.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ invokeinterface</H6>
+<b></b><p>
+<b><center></b><i> invoke an interface method</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    invokeinterface &lt;method-spec&gt; &lt;n&gt;
+
+</font></pre>
+&lt;method-spec&gt;
+is a method specification and &lt;n&gt; is an integer in the range 0-255. <p>
+The &lt;method-spec&gt; is a single token made up of three parts: an
+<i>interfacename</i>, a <i>methodname</i> and a <i>descriptor</i>. e.g.
+
+<pre><font size=-1>
+     java/util/Enumeration/hasMoreElements()Z
+</font></pre>
+is
+the method called "hasMoreElements" in the interface called
+"java.util.Enumeration", and it has the descriptor "()Z" (i.e. it takes no
+arguments and returns a boolean result). In Jasmin, the characters up to the
+'(' character in &lt;method-spec&gt; form the <i>interfacename</i> and
+<i>methodname</i> (the <i>interfacename</i> is all the characters up to the
+last '/' character, and the <i>methodname</i> is all the characters between the
+last '/' and the '(' character). The characters from '(' to the end of the
+string are the <i>descriptor</i>. This is illustrated in the following diagram:
+
+<pre><font size=-1>
+
+     foo/baz/MyInterface/myMethod(Ljava/lang/String;)V
+     -------------------         ---------------------
+             |           --------         |
+     interfacename          |             |
+                       methodname     descriptor
+
+{{JM - can we have a nicer diagram?}}
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">argN
+<BR></TD>
+<TD colspan=1 align="left">[result]
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">---
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg1
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>invokeinterface</tt> is used to invoke a method declared within a
+Java interface. For example, if you have the Java code:
+
+<pre><font size=-1>
+void test(Enumeration enum) {
+    boolean x = enum.hasMoreElements();
+    ...
+}
+</font></pre>
+<tt>invokeinterface</tt>
+will be used to call the hasMoreElements() method, since Enumeration is a Java
+interface, and hasMoreElements() is a method declared in that interface. In
+this example, the Java compiler generates code like:
+
+<pre><font size=-1>
+    aload_1            ; push local variable 1 (i.e. the enum object) onto the stack
+    ; call hasMoreElements()
+    invokeinterface java/util/Enumeration/hasMoreElements()Z 1  
+    istore_2           ; store the boolean result in local variable 2 (i.e. x)
+</font></pre>
+Which
+particular implementation of hasMoreElements() is used will depend on the type
+of object held in local variable 1 at runtime. <p>
+Before performing the method invokation, the interface and the method
+identified by &lt;method-spec&gt; are resolved. See Chapter 9 for a description
+of how methods are resolved.<p>
+To invoke an interface method, the interpreter first pops &lt;n&gt; items off
+the operand stack, where &lt;n&gt; is an 8-bit unsigned integer parameter taken
+from the bytecode. The first of these items is <i>objectref</i>, a reference to
+the object whose method is being called. The rest of the items are the
+arguments for the method. <p>
+Then the class of the object referred to by <i>objectref</i> is retrieved. This
+class must implement the interface named in &lt;method-spec&gt;. The method
+table for this class is searched, and the method with the given
+<i>methodname</i> and <i>descriptor </i>is located.<p>
+Once the method has been located, <tt>invokeinterface</tt> calls the method.
+First, if the method is marked as <tt>synchronized</tt>, the monitor associated
+with <i>objectref</i> is entered. Next, a new stack frame is established on the
+callstack. Then the arguments for the method are placed in the local variable
+slots of the new stack frame structure. arg1 is stored in local variable 1,
+arg2 is stored in local variable 2 and so on. <i>objectref</i> is stored in
+local variable 0, the local variable used by the special Java variable
+<tt>this</tt>. Execution continues at the first instruction in the bytecode of
+the new method. <p>
+Methods marked as <tt>native</tt> are handled slightly differently. For native
+methods, the runtime system locates the platform-specific code for the method,
+loading it and linking it into the JVM if necessary. Then the native method
+code is executed with the arguments that were popped from the operand stack.
+The exact mechanism used to invoke native methods is implementation-specific.<p>
+When the method called by <tt>invokeinterface</tt> returns, any single (or
+double) word return result is placed on the operand stack of the current
+method. If the invoked method was marked as <tt>synchronized</tt>, the monitor
+associated with <i>objectref</i> is exited. Then execution continues at the
+instruction that follows <tt>invokeinterface</tt> in the bytecode.<p>
+<b>Exceptions</b><p>
+<b></b>NullPointerException - <i>objectref</i> is <tt>null</tt><p>
+StackOverflowError - no more space in callstack for a new stack frame<p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, after the <tt>invokeinterface</tt> opcode is a 16-bit
+unsigned integer <i>index</i>. This is the index of an entry in the constant
+pool. The entry is tagged as a CONSTANT_InterfaceMethodref entry. This entry
+has two fields. One field points to a CONSTANT_Class entry in the constant pool
+whose name is the <i>interfacename</i> from &lt;method-spec&gt;, and the other
+points to a CONSTANT_NameAndType entry in the constant pool whose name is the
+<i>methodname</i> from &lt;method-spec&gt; and whose descriptor is the type
+<i>descriptor</i> from &lt;method-spec&gt;.<p>
+<tt>invokeinterface</tt> takes an additional unsigned byte parameters in
+bytecode: &lt;n&gt;. &lt;n&gt; is the number of argument words the method takes
+plus one, (i.e. the second parameter given to the <tt>invokeinterface</tt>
+instruction in Jasmin). &lt;n&gt; must match the number of argument words given
+in the <i>descriptor</i> for the method. <p>
+After &lt;n&gt;, there follows a single byte, which must be zero (this byte
+location is in fact used at runtime by Sun's Java interpreter - it caches a
+hashing value in this byte, to speed up <tt>invokeinterface</tt> method lookup). 
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">invokeinterface
+opcode = 0xB9 (185)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left"><i>index</i>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">&lt;n&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">0
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>invokevirtual</tt>, <tt>invokespecial</tt>, <tt>invokestatic</tt><p>
+<b>Notes</b><p>
+<b></b>1. Of the instructions used to invoke instance methods,
+<tt>invokeinterface</tt> is the most complex to implement, and typically the
+least efficient. See Chapter 10 (Implementation) for more details on this.
+<p>
+2. <tt>invokevirtual</tt> cannot be used to invoke the special methods
+<tt>&lt;init&gt;</tt> or <tt>&lt;clinit&gt;</tt> - see
+<tt>invokespecial</tt>.<p>
+3. The &lt;n&gt; and 0 byte parameters in bytecode are present mostly for
+historical reasons.  <p>
+<P><hr size=4>
+<A HREF="ref--31.html">prev</A>
+ <A HREF="ref--33.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

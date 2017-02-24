@@ -1,0 +1,80 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - return</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-ret.html">prev</A>
+ <A HREF="ref-saload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+return</H6>
+<b></b><p>
+<b><center></b><i>return from method</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    return
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>return</tt> is used to return from a method whose return type is
+void.<p>
+All items on the current method's operand stack are discarded. If the current
+method is marked as synchronized, then an implicit monitorexit instruction is
+executed. Then the current method's frame is discarded, the invoker's frame is
+reinstated, and control returns to the invoker.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; the following method takes no parameters, performs no actions, and returns no results.
+.method identity()V
+    return  ; simply return with no result
+.end method
+
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">return
+opcode = 0xB1 (177)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>lreturn</tt>, <tt>freturn</tt>, <tt>dreturn</tt>, <tt>areturn</tt>,
+<tt>ireturn</tt><p>
+<P><hr size=4>
+<A HREF="ref-ret.html">prev</A>
+ <A HREF="ref-saload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

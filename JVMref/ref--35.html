@@ -1,0 +1,171 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  invokevirtual</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--34.html">prev</A>
+ <A HREF="ref-_ior.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ invokevirtual</H6>
+<b></b><p>
+<b><center></b><i>call an instance method</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    invokevirtual &lt;method-spec&gt;
+
+</font></pre>
+&lt;method-spec&gt;
+is a method specification. It is a single token made up of three parts: a
+<i>classname</i>, a <i>methodname</i> and a <i>descriptor</i>. e.g.
+
+<pre><font size=-1>
+     java/lang/StringBuffer/charAt(I)C
+</font></pre>
+is
+the method called "charAt" in the class called "java.lang.StringBuffer", and it
+has the descriptor "(I)C" (i.e. it takes an integer argument and returns a char
+result). In Jasmin, the characters up to the '(' character in
+&lt;method-spec&gt; form the <i>classname</i> and <i>methodname</i> (the
+<i>classname</i> is all the characters up to the last '/' character, and the
+<i>methodname</i> is all the characters between the last '/' and the '('
+character). The characters from '(' to the end of the string are the
+<i>descriptor</i>. This is illustrated in the following diagram:
+
+<pre><font size=-1>
+
+     foo/baz/Myclass/myMethod(Ljava/lang/String;)V
+     ---------------         ---------------------
+           |         --------         |
+           |            |             |
+         classname  methodname    descriptor
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg1
+<BR></TD>
+<TD colspan=1 align="left">[result]
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg2
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">argN
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>invokevirtual</tt> dispatches a Java method. It is used in Java to
+invoke all methods except interface methods (which use
+<tt>invokeinterface</tt>), static methods (which use <tt>invokestatic</tt>),
+and the few special cases handled by <tt>invokespecial</tt>. <p>
+For example, when you write in Java:
+
+<pre><font size=-1>
+    Object x;
+    ...
+    x.equals("hello");
+</font></pre>
+this
+is compiled into something like:
+
+<pre><font size=-1>
+    aload_1       ; push local variable 1 (i.e. 'x') onto stack
+    ldc "hello"   ; push the string "hello" onto stack
+
+    ; invoke the equals method
+    invokevirtual java/lang/Object/equals(Ljava/lang/Object;)Z
+    ; the boolean result is now on the stack
+</font></pre>
+Note
+that the actual method run depends on the runtime type of the object
+<tt>invokevirtual</tt> is used with. So in the example above, if x is an
+instance of a class that overrides Object's equal method, then the subclasses'
+overridden version of the equals method will be used.<p>
+Before performing the method invokation, the class and the method identified by
+&lt;method-spec&gt; are resolved. See Chapter 9 for a description of how
+methods are resolved.<p>
+<tt>invokevirtual</tt> looks at the <i>descriptor</i> given in
+&lt;method-spec&gt;, and determines how many arguments the method takes (this
+may be zero). It pops these arguments off the operand stack. Next it pops
+<i>objectref</i> off the stack. <i>objectref</i> is a reference to the object
+whose method is being called. <tt>invokevirtual</tt> retrieves the Java class
+for <i>objectref</i>, and searches the list of methods defined by that class
+and then its superclasses, looking for a method called <i>methodname,</i> whose
+descriptor is <i>descriptor</i>.<p>
+Once a method has been located, <tt>invokevirtual</tt> calls the method. First,
+if the method is marked as synchronized, the monitor associated with
+<i>objectref</i> is entered. Next, a new stack frame structure is established
+on the call stack. Then the arguments for the method (which were popped off the
+current method's operand stack) are placed in local variables of the new stack
+frame structure. arg1 is stored in local variable 1, arg2 is stored in local
+variable 2 and so on. <i>objectref</i> is stored in local variable 0 (the local
+variable used for the special Java variable <tt>this</tt>). Finally, execution
+continues at the first instruction in the bytecode of the new method.  <p>
+When the method called by <tt>invokevirtual</tt> returns, any single (or
+double) word <tt>return</tt> result is placed on the operand stack of the
+current method and execution continues at the instruction that follows
+<tt>invokevirtual</tt> in the bytecode.<p>
+<b> Exceptions</b><p>
+<b></b>NullPointerException - <i>objectref</i> is <tt>null</tt><p>
+StackOverflowError - no more space in callstack for a new stack frame<p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, after the <tt>invokevirtual</tt> opcode is a 16-bit
+unsigned integer <i>index</i>. This is the index of an  entry in the constant
+pool. The entry is tagged as a CONSTANT_Methodref entry. This entry has two
+fields. One field points to a CONSTANT_Class entry in the constant pool whose
+name is the <i>classname</i> from &lt;method-spec&gt;, and the other points to
+a CONSTANT_NameAndType entry in the constant pool whose name is the
+<i>methodname</i> from &lt;method-spec&gt; and whose descriptor is the type
+<i>descriptor</i> from &lt;method-spec&gt;.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">invokevirtual
+opcode = 0xB6 (182)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>invokespecial</tt>, <tt>invokestatic</tt>,
+<tt>invokeinterface</tt><p>
+<P><hr size=4>
+<A HREF="ref--34.html">prev</A>
+ <A HREF="ref-_ior.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

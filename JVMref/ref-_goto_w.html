@@ -1,0 +1,95 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  goto_w</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_goto.html">prev</A>
+ <A HREF="ref-_i2b.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ goto_w</H6>
+<b></b><p>
+<b><center></b><i> branch  to address using wide offset</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    goto_w &lt;label&gt;
+</font></pre>
+&lt;label&gt;
+is a label name. To define the location of the label, use the &lt;label&gt;
+name followed by a colon:
+
+<pre><font size=-1>
+&lt;label&gt;:
+</font></pre>
+&lt;label&gt;
+then becomes associated the address of the following instruction. Labels can
+only be assigned one location in a method. On the other hand, a single
+&lt;label&gt; can be the target of multiple branch instructions.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Causes execution to branch to the instruction  at the address (<i>pc</i>
++ <i>branchoffset</i>), where <i>pc</i> is the address of the <tt>goto_w</tt>
+opcode in the bytecode and <i>branchoffset</i> is a 32-bit signed integer
+parameter that follows the <tt>goto_w</tt> opcode in the bytecode. If you are
+using Jasmin, <i>branchoffset</i> is determined for you from the address
+associated with &lt;label&gt;.<p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">goto_w
+opcode = 0xC8 (200)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">branchoffset
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>goto</tt>, <tt>jsr</tt>, <tt>jsr_w</tt><p>
+<b> Notes</b><p>
+<b></b>1. <tt>goto_w</tt> is identical to <tt>goto</tt>, except that a 32-bit
+signed integer <i>branchoffset</i> is used instead of a 16-bit
+<i>branchoffset</i>. <p>
+2. In Jasmin, <tt>goto</tt> and <tt>goto_w</tt> are synonymous, since the
+Jasmin assembler automatically decides which version of the instruction to use,
+based on the address of  the&lt;label&gt;.<p>
+3. Addresses are measured in bytes from the start of the bytecode - i.e.
+address 0 is the first byte in the bytecode of the currently executing method.
+The maximum address in a method is 65535.<p>
+<P><hr size=4>
+<A HREF="ref-_goto.html">prev</A>
+ <A HREF="ref-_i2b.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

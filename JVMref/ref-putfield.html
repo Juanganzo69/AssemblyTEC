@@ -1,0 +1,184 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - putfield</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-pop2.html">prev</A>
+ <A HREF="ref-putstati.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+putfield</H6>
+<b></b><p>
+<b><center></b><i>set value of object field</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    putfield &lt;field-spec&gt; &lt;descriptor&gt;
+
+</font></pre>
+&lt;field-spec&gt;
+is composed of two parts, a <i>classname</i> and a <i>fieldname</i>. The
+<i>classname</i> is all of the characters in the &lt;field-spec&gt; up to the
+last '/' character, and the <i>fieldname</i> is the rest of the characters
+after the last '/'. For example: 
+
+<pre><font size=-1>
+    foo/baz/AnotherClass/aVeryLongFieldName
+    -- classname -------/-- fieldname -----
+
+</font></pre>
+{{JM
+- can we turn this into a nicer diagram?}}
+
+<pre><font size=-1>
+
+</font></pre>
+&lt;descriptor&gt;
+is the Java type descriptor for the field, for example
+<tt>Ljava/io/PrintStream;</tt><p>
+<tt></tt>In Jasmin, the <tt>.field</tt> directive is used to add a field to a
+class. See Chapter 16 for a description of this and other Jasmin directives.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE>or,
+for fields holding doubles or longs:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value-word1
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value-word2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>putfield</tt> sets the value of the field identified by
+&lt;field-spec&gt; in <i>objectref</i> (a reference to an object) to the single
+or double word value on the operand stack. For example, if you have the class:
+
+<pre><font size=-1>
+    package xyz;
+    class Point {
+        public int xCoord, yCoord;
+    };
+</font></pre>
+Then,
+assuming p is an instance of the class Point, writing the Java expression:
+
+<pre><font size=-1>
+    p.xCoord = 10;
+</font></pre>
+generates
+JVM code like:
+
+<pre><font size=-1>
+    aload_1                      ; push object in local varable 1 (i.e. p) onto the stack
+    bipush 10                    ; push the integer 10 onto the stack
+    putfield xyz/Point/xCoord I  ; set the value of the integer field p.xCoord to 10
+</font></pre>
+In
+Jasmin, <tt>putfield</tt> takes two parameters, &lt;field-spec&gt; and
+&lt;descriptor&gt;. &lt;field-spec&gt; provides <i>classname</i>, the name of
+the class that defines the field, as well as <i>fieldname</i>, the name of the
+field. In the example above, the &lt;field-spec&gt; is "xyz/Point/xCoord",
+indicating that the <i>classname</i> is called "xyz/Point" and the
+<i>fieldname</i> is "xCoord". &lt;descriptor&gt; indicates the type of data
+held in the field, and is a standard Java type descriptor (see Chapter 4). In
+the example above, &lt;descriptor&gt; is "I", since the field holds an
+integer.<p>
+<tt>putfield</tt> first resolves <i>classname</i> to a Java class. Then it
+locates <i>fieldname</i> in that class, determining the <i>size</i> of the
+field (in bytes) and its <i>offset</i> (in bytes) from the base of the object
+data. The type of the field must match &lt;descriptor&gt;. See Chapter 7 for a
+full discussion of how fields are resolved<p>
+To set the value of the field, <tt>putfield</tt> pops either a 4-byte or 8-byte
+quantity off the stack (depending on the field descriptor), and truncates it to
+be <i>width</i> bytes long. Then it sets the bytes starting at <i>offset</i>
+and extending for <i>width</i> bytes in <i>objectref</i>'s instance data to the
+new value. <p>
+<b>Exceptions</b><p>
+<b></b>NullPointerException - <i>objectref</i> is <tt>null</tt><p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, the <tt>putfield</tt> opcode is followed by a 16-bit
+unsigned integer <i>index</i>. This is the index of an entry in the constant
+pool of the current class. The entry is tagged a CONSTANT_Fieldref entry. The
+fieldref entry lists a CONSTANT_Class entry in the constant pool whose name is
+the <i>classname</i> given in &lt;field-spec&gt;, as well as a
+CONSTANT_NameAndType entry in the constant pool, whose name is  the
+<i>fieldname</i> given in &lt;field-spec&gt;, and whose descriptor is the
+string given by &lt;descriptor&gt;.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">putfield
+opcode = 0xB5 (181)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>getfield</tt>, <tt>putstatic</tt>, <tt>getstatic</tt><p>
+<b>Notes</b><p>
+<b></b>Fields cannot be overriden, although they can be 'shadowed'. For
+example, with the two classes:
+
+<pre><font size=-1>
+    class A { int x; }
+and
+    class B extends A { int x; }
+</font></pre>
+instances
+of B will have storage for both the field "A/x" and the field "B/x". Which
+field is accessed is determined by the class name given in
+&lt;field-spec&gt;.<p>
+<P><hr size=4>
+<A HREF="ref-pop2.html">prev</A>
+ <A HREF="ref-putstati.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

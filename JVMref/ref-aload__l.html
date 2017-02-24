@@ -1,0 +1,110 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - aload_&lt;n&gt;</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-aload.html">prev</A>
+ <A HREF="ref-anewarra.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+aload_&lt;n&gt;</H6>
+<b></b><p>
+<b><center></b><i>retrieve object reference from local variable &lt;n&gt;</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+    aload_0
+or
+    aload_1
+or
+    aload_2
+or
+    aload_3
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">objectref
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>Description</b><p>
+<b></b><tt>aload_&lt;n&gt;</tt> represents the series of opcodes
+<tt>aload</tt>_0, <tt>aload</tt>_1, <tt>aload</tt>_2, and <tt>aload</tt>_3 that
+retrieve an object reference held in local variables 0, 1, 2 or 3 and push it
+onto the stack. &lt;n&gt; must be a valid local variable number in the current
+frame.<p>
+'<tt>aload_&lt;n&gt;</tt>' is functionally equivalent to '<tt>aload
+&lt;n&gt;</tt>', although it is typically more efficient and also takes fewer
+bytes in the bytecode.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+aload_0         ;push object in local variable 0
+aload_1         ;push object in local variable 1
+aload_2         ;push object in local variable 2
+aload_3         ;push object in local variable 3
+</font></pre>
+<b>Bytecode<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">aload_0
+opcode = 0x2A (42)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">aload_1
+opcode = 0x2B (43)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">aload_2
+opcode = 0x2C (44)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">aload_3
+opcode = 0x2D (45)
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>fload</tt>, <tt>iload</tt>, <tt>lload</tt>, <tt>dload</tt><p>
+<tt></tt><b>Notes</b><p>
+<b></b>If you use <tt>astore</tt> to store a returnAddress in a local variable,
+you cannot then use <tt>aload_&lt;n&gt;</tt> to retrieve the value of that
+local variable. Instead, if a local variable holds a returnAddress, your only
+choices are to (1) use <tt>ret</tt> to return to that address, or (2) use one
+of the store instructions to store some other value in the local variable.<p>
+<P><hr size=4>
+<A HREF="ref-aload.html">prev</A>
+ <A HREF="ref-anewarra.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

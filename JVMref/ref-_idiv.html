@@ -1,0 +1,81 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  idiv</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--22.html">prev</A>
+ <A HREF="ref--23.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ idiv</H6>
+<b></b><p>
+<b><center></b><i> divide an integer by another integer</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    idiv
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1
+<BR></TD>
+<TD colspan=1 align="left">result
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Pops the top two integers from the operand stack and divides the
+second-from top integer (<i>value2</i>) by the top integer (<i>value1</i>),
+i.e. computes (<i>value2</i> div <i>value1</i>). The quotient result is
+truncated to the nearest integer (with rounding going towards zero, so 1.7
+becomes 1) and placed on the stack.<p>
+<b>Exceptions</b><p>
+<b></b>ArithmeticException - attempt to divide by 0 (i.e. <i>value1</i> is 0)<p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">idiv
+opcode = 0x6C (108)
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>ldiv</tt>, <tt>fdiv</tt>, <tt>ddiv</tt><p>
+<tt></tt><b>Notes</b><p>
+<b></b>Because of the two's-complement representation used for negative
+numbers, dividing Integer.MIN_VALUE by -1 produces Integer.MIN_VALUE, not
+Integer.MAX_VALUE as you might expect.<p>
+<P><hr size=4>
+<A HREF="ref--22.html">prev</A>
+ <A HREF="ref--23.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

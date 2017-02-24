@@ -1,0 +1,128 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  instanceof</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_ineg.html">prev</A>
+ <A HREF="ref--32.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ instanceof</H6>
+<b></b><p>
+<b><center></b><i> test class of object</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    instanceof &lt;type&gt;
+
+</font></pre>
+<tt>&lt;type&gt;</tt>
+is the name of a Java class, e.g. <tt>java/lang/String</tt>. Alternatively, to
+test for array references, <tt>&lt;type&gt;</tt> can be the type descriptor of
+an array, e.g. <tt>[[Ljava/lang/String;</tt><p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left">int-result
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>The <tt>instanceof</tt> instruction is used to implement the Java
+language's <tt>instanceof</tt> operator, which tests whether an object
+reference or array belongs to a given class.<p>
+<tt>instanceof</tt> takes a single parameter, <tt>&lt;type&gt;</tt>.
+<tt>&lt;type&gt;</tt> is either the name of a Java class, or it is the type
+descriptor of an array. <p>
+At runtime, &lt;type&gt; is resolved (Chapter 7 describes how classes are
+resolved). Next, <tt>instanceof</tt> pops <i>objectref</i> (a reference to an
+object) off the top of the operand stack. If <i>objectref</i> is an instance of
+<tt>&lt;type&gt;</tt> or one of <tt>&lt;type&gt;</tt>'s subclasses, the int 1
+is pushed onto the stack, otherwise the int 0 is pushed onto the stack. If
+<i>objectref</i> is <tt>null</tt>, the result is always 0. If
+<tt>&lt;type&gt;</tt> is an interface, int-result will be 1 if <i>objectref</i>
+implements that interface, and 0 if <i>objectref</i> does not implement the
+interface.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; using instanceof to test for a String:
+    aload_1        ; push object reference in local variable 1 onto stack
+    instanceof java/lang/String;      ; test if item on stack is a String
+    ifne HaveString                   ; if so, goto HaveString
+    return                            ; otherwise, return
+HaveString:
+    ; if this point is reached, local variable 1 holds a string
+
+; this example uses instanceof to test if local variable 1 holds
+; an integer array
+    aload_1                  ; push local variable 1 onto the stack
+    instanceof [I            ; test if the top item on the stack is an integer array
+    ifne HaveIntegerArray    ; if so, jump to HaveIntegerArray
+    return                   ; simply return if local variable 1 is not an int array
+HaveIntegerArray:            
+    ; if this point is reached, local variable 1 holds an integer array
+
+; you can also use instanceof to test that objects implement a given interface,
+; e.g.
+    aload_1                  ; push local variable 1 onto the stack
+    instanceof java/lang/Runnable  ; test if it implements the Runnable interface
+    ifne HaveARunnable       ; if so, jump to HaveARunnable
+    return                   ; otherwise return
+HaveARunnable:            
+    ; if this point is reached, local variable 1 holds a reference to an object
+    ; that implements the Runnable interface.
+
+</font></pre>
+<b>Bytecode</b><p>
+<b></b>In bytecode, immediately following the <tt>instanceof</tt> opcode is a
+16-bit unsigned short integer. This integer is the index of an entry in the
+constant pool of the current class. The entry is tagged a CONSTANT_Class entry.
+The name field of the CONSTANT_Class entry is the same as the string given by
+&lt;type&gt; parameter in Jasmin. 
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">instanceof
+opcode = 0xC1 (193)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b>checkcast<p>
+Chapter 7 gives a pseudo-code implementation of instanceof.<p>
+<P><hr size=4>
+<A HREF="ref-_ineg.html">prev</A>
+ <A HREF="ref--32.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

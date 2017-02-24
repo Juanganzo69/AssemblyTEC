@@ -1,0 +1,127 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - new</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--46.html">prev</A>
+ <A HREF="ref-newarray.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+new</H6>
+<b></b><p>
+<b><center></b><i>create an object</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    new &lt;class&gt;
+</font></pre>
+&lt;class&gt;
+is the name of the class to use, e.g. <tt>java/lang/String</tt>.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">objectref
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>new</tt> is used to create object instances. <p>
+<tt>new</tt> takes a single parameter, &lt;class&gt;, the name of the class of
+object you want to create. &lt;class&gt; is resolved into a Java class (see
+Chapter 7 for a discussion of how classes are resolved).  Then <tt>new</tt>
+determines the size in bytes of instances of  the given class and allocates
+memory for the new instance from the garbage collected heap. The fields of the
+instance are set to the initial value 0 (for numeric and boolean fields), or
+<tt>null</tt> (for reference fields).  Next, a reference to the new object is
+pushed onto the operand stack.<p>
+Note that the new object is initialize uninitialized - before the new object
+can be used, one of its &lt;init&gt; methods must be called using
+<tt>invokespecial</tt>, as shown in the example below.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; This example creates a new StringBuffer object. This is like the Java code:
+;
+;    StringBuffer x = new StringBuffer();
+
+; 1. use new to create a new object reference
+new java/lang/StringBuffer
+
+; 2. dup the object reference and call its constructor
+dup
+invokespecial java/lang/StringBuffer/&lt;init&gt;()V
+
+; 3. assign object reference on the stack to a local variable
+astore_1
+; local variable 1 now contains a StringBuffer object,
+; ready for use
+
+
+; the following example shows how to call a non-default
+; constructor. It is like the Java code:
+;
+;    StringBuffer x = new StringBuffer(100);
+new java/lang/StringBuffer
+dup
+bipush 100
+invokespecial java/lang/StringBuffer/&lt;init&gt;(I)V
+astore_1
+</font></pre>
+<b></b><p>
+<b>Exceptions</b><p>
+<b></b>OutOfMemoryError - not enough memory to allocate a new instance<p>
+InstantiationError - The class named by <tt>&lt;type&gt;</tt> is an abstract
+class or an interface<p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, after the <tt>new</tt> opcode is a 16-bit unsigned integer
+<i>index</i>. This integer is the index of an entry in the constant pool of the
+current class. The entry is tagged a CONSTANT_Class entry (see Chapter 4). The
+name field of the entry is a string given by the &lt;type&gt; parameter in
+Jasmin. 
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">new
+opcode = 0xBB (187)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>anewarray</tt>, <tt>newarray</tt>, <tt>multianewarray</tt><p>
+<P><hr size=4>
+<A HREF="ref--46.html">prev</A>
+ <A HREF="ref-newarray.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

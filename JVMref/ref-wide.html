@@ -1,0 +1,111 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - wide</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-tableswi.html">prev</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+wide</H6>
+<b></b><p>
+<b><center></b><i>next instruction uses 16-bit index</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+	wide
+	&lt;instruction&gt; &lt;parameter&gt; [&lt;parameter&gt;]
+</font></pre>
+Note
+that the Jasmin assembler automatically widens instructions as necessary - so
+the wide instruction is optional in Jasmin.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>Description</b><p>
+<b></b><tt>wide</tt> is placed in front of an instruction that accesses a local
+variable. You use it to extend the range of local variables available to the
+instruction from 8 bits (i.e. 0-255) to 16 bits (i.e. 0-65535). In addition,
+for <tt>iinc</tt>, it increases the increment range. <tt>wide</tt> is used in
+conjunction with one of the following opcodes: <tt>aload</tt>, <tt>dload</tt>,
+<tt>iload</tt>, <tt>fload</tt>, <tt>lload</tt>, <tt>astore</tt>,
+<tt>dstore</tt>, <tt>istore</tt>, <tt>fstore</tt>, <tt>lstore</tt>,
+<tt>iinc</tt> and <tt>ret</tt>. See the reference pages of those instructions
+for more details.<p>
+<b>Bytecode</b><p>
+<b></b>There are two bytecode formats. For <tt>aload, dload, iload, fload,
+lload, astore, dstore, istore, fstore, lstore,</tt> and <tt>ret</tt>, use:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+<BR></TD>
+<TD colspan=1 align="left">wide
+opcode = 0xC4 (196)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+<BR></TD>
+<TD colspan=1 align="left">&lt;opcode&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u2
+<BR></TD>
+<TD colspan=1 align="left">&lt;varnum&gt;
+<BR></TD></TR></TABLE>or,
+for <tt>iinc</tt>, use:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+<BR></TD>
+<TD colspan=1 align="left">wide
+opcode = 0xC4 (196)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+<BR></TD>
+<TD colspan=1 align="left">&lt;opcode&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u2
+<BR></TD>
+<TD colspan=1 align="left">&lt;varnum&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u2
+<BR></TD>
+<TD colspan=1 align="left">&lt;n&gt;
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>aload</tt>, <tt>iload</tt>, <tt>fload</tt>, <tt>dload</tt>,
+<tt>lload</tt>, <tt>astore</tt>, <tt>istore</tt>, <tt>fstore</tt>,
+<tt>dstore</tt>, <tt>lstore</tt>, <tt>iinc</tt>, <tt>ret</tt><p>
+<tt></tt><b>Notes</b><p>
+<b></b>The opcode that follows <tt>wide</tt> cannot be the target of a branch.
+<p>
+<P><hr size=4>
+<A HREF="ref-tableswi.html">prev</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,99 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  dcmpl</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_dcmpg.html">prev</A>
+ <A HREF="ref--9.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ dcmpl</H6>
+<b></b><p>
+<b><center></b><i> compare two doubles (-1 on NaN)</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    dcmpl
+</font></pre>
+<b></b><p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1-word1
+<BR></TD>
+<TD colspan=1 align="left">int-result
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1-word2
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word1
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>This takes two double-precision floating point numbers off the operand
+stack and compares them, using IEEE 754 rules. <p>
+If the two numbers are the same, the 32-bit integer 0 is pushed onto the stack.
+If <i>value2</i> is greater than <i>value1</i>, the integer 1 is pushed onto
+the stack. If  <i>value1</i> is greater than <i>value2</i>, -1 is pushed onto
+the stack. If either numbers is NaN, the integer 1 is pushed onto the stack.
++0.0 and -0.0 are treated as equal.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+dload_1       ; push the double in local variable 1
+dconst_0      ; push the double 0.0 onto the stack
+dcmpl         ; compare the two numbers
+
+; The integer result on the stack is:
+;     0 if local variable 1 equals 0
+;     -1 if local variable 1 is less than 0
+;     1 if local variable 1 is greater than 0
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">dcmpl
+opcode = 0x97 (151)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>lcmp</tt>, <tt>fcmpl</tt>, <tt>fcmpg</tt>, <tt>dcmpg</tt><p>
+<b> Notes</b><p>
+<b></b>This instruction is identical to <tt>dcmpg</tt> except for the treatment
+of NaN.<p>
+<P><hr size=4>
+<A HREF="ref-_dcmpg.html">prev</A>
+ <A HREF="ref--9.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

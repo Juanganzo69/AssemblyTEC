@@ -1,0 +1,98 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - ldc2_w</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_ldc_w.html">prev</A>
+ <A HREF="ref-_ldiv.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ldc2_w</H6>
+<b></b><p>
+<b><center></b><i> push two-word constant onto stack</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    ldc2_w &lt;value&gt;
+</font></pre>
+<i>&lt;</i>value<i>&gt;</i>
+is a long integer or a double-precision floating point number.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">&lt;value&gt;-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">&lt;value&gt;-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>ldc2_w</tt> pushes a two-word constant value onto the operand stack.
+<tt>ldc2_w</tt> takes a single parameter, <i>&lt;</i>value<i>&gt;</i>, which is
+the two-word item to push. The following Java types can be pushed using
+<tt>ldc2_w</tt>:<p>
+	long<br>	double<p>
+<b>Example</b>
+
+<pre><font size=-1>
+ldc2_w 10             ; push the long integer 10
+ldc2_w 1.54           ; push the double precision float 1.54
+</font></pre>
+<b>Bytecode</b><p>
+<b></b>In bytecode, the <tt>ldc2_w</tt> opcode is followed by a 16-bit unsigned
+integer. This integer is the index of an entry in the constant pool. The entry
+is tagged either as a CONSTANT_Double or a CONSTANT_Long entry, and has a data
+field which contains <i>&lt;</i>value<i>&gt;</i>.  
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">ldc2_w
+opcode = 0x14 (20)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>bipush</tt>, <tt>sipush</tt>, <tt>ldc</tt>, <tt>ldc_w</tt>,
+<tt>aconst_null</tt>, <tt>iconst_m1</tt>, <tt>iconst_&lt;n&gt;</tt>,
+<tt>lconst_&lt;l&gt;</tt>, <tt>fconst_&lt;f&gt;</tt>,
+<tt>dconst_&lt;d&gt;</tt><p>
+<P><hr size=4>
+<A HREF="ref-_ldc_w.html">prev</A>
+ <A HREF="ref-_ldiv.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

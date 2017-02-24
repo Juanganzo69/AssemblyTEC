@@ -1,0 +1,76 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  ireturn</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_irem.html">prev</A>
+ <A HREF="ref-_ishl.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ ireturn</H6>
+<b></b><p>
+<b><center></b><i> return from method with  integer result</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    ireturn
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">return-value
+
+<BR></TD>
+<TD colspan=1 align="left">n/a
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>P</tt>ops an int from the top of the stack and pushes it onto the
+operand stack of the invoker (i.e. the method which used
+<tt>invokevirtual</tt>, <tt>invokespecial</tt>, <tt>invokestatic</tt> or
+<tt>invokeinterface</tt> to call the currently executing method). All other
+items on the current method's operand stack are discarded. If the current
+method is marked as synchronized, then an implicit monitorexit instruction is
+executed. Then the current method's frame is discarded, the invoker's frame is
+reinstated, and control returns to the invoker. This instruction can only be
+used in methods whose return type is int.<p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">ireturn
+opcode = 0xAC (172)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>lreturn</tt>, <tt>freturn</tt>, <tt>dreturn</tt>, <tt>areturn</tt>,
+<tt>return</tt><p>
+<P><hr size=4>
+<A HREF="ref-_irem.html">prev</A>
+ <A HREF="ref-_ishl.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

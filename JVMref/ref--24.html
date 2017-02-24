@@ -1,0 +1,107 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  if_acmpne</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--23.html">prev</A>
+ <A HREF="ref--25.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ if_acmpne</H6>
+<b></b><p>
+<b><center></b><i> jump if two object references are not equal</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    if_acmpne &lt;label&gt;
+</font></pre>
+&lt;label&gt;
+is a label name. To define the location of the label, use the &lt;label&gt;
+name followed by a colon:
+
+<pre><font size=-1>
+&lt;label&gt;:
+</font></pre>
+&lt;label&gt;
+then becomes associated the address of the following instruction. Labels can
+only be assigned one location in a method. On the other hand, a single
+&lt;label&gt; can be the target of multiple branch instructions.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>Description</b><p>
+<b></b><tt>if_acmpne</tt> pops the top two object references off the stack and
+compares them. If the two object references are not equal (i.e. if they refer
+to different objects), execution branches to the address (<i>pc</i> +
+<i>branchoffset</i>), where <i>pc</i> is the address of the <tt>if_acmpne</tt>
+opcode in the bytecode and <i>branchoffset</i> is a 16-bit signed integer
+parameter following the <tt>if_acmpne</tt> opcode in the bytecode. If the
+object references refer to the same object, execution continues at the next
+instruction. <p>
+If you are using Jasmin, <i>branchoffset</i> is computed for you from the
+address of &lt;label&gt;.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+    aload_1         ; push the object reference in local variable 1 onto stack
+    aload_2         ; push the object reference in local variable 2 onto stack
+    if_acmpne Label ; if the two references on the stack differ, jump to Label
+    return          ; return if local variables 1 and 2 are the same object
+Label:
+    ; execution continues here if local variables 1 and 2 refer to the different  objects
+</font></pre>
+<b>Bytecode<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">if_acmpne
+opcode = 0xA6 (166)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s2 
+<BR></TD>
+<TD colspan=1 align="left"><i>branchoffset</i>
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>if_icmpne</tt>, <tt>if_icmplt</tt>, <tt>if_icmpgt</tt>,
+<tt>if_icmple</tt>, <tt>if_icmpge</tt><p>
+<b>Notes</b><p>
+<b></b>Addresses are measured in bytes from the start of the bytecode (i.e.
+address 0 is the first byte in the bytecode of the currently executing
+method).<p>
+<P><hr size=4>
+<A HREF="ref--23.html">prev</A>
+ <A HREF="ref--25.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

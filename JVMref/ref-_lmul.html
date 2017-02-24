@@ -1,0 +1,79 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  lmul</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--40.html">prev</A>
+ <A HREF="ref-_lneg.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ lmul</H6>
+<b></b><p>
+<b><center></b><i> multiply two longs</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    lmul
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1-word1
+<BR></TD>
+<TD colspan=1 align="left">result-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1-word2
+<BR></TD>
+<TD colspan=1 align="left">result-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word1
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>Description</b><p>
+<b></b>Pops the top two long integers from the operand stack, multiplies them,
+and then pushes the long integer result back onto the stack. On overflow, lmul
+produces a result whose low order bits are correct, but whose sign bit may be
+incorrect.<p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lmul
+opcode = 0x69 (105)
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>imul</tt>, <tt>fmul</tt>, <tt>dmul</tt><p>
+<P><hr size=4>
+<A HREF="ref--40.html">prev</A>
+ <A HREF="ref-_lneg.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

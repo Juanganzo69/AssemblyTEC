@@ -1,0 +1,158 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  invokestatic</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--33.html">prev</A>
+ <A HREF="ref--35.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ invokestatic</H6>
+<b></b><p>
+<b><center></b><i> invoke a class (static) method</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+invokestatic &lt;method-spec&gt;
+
+</font></pre>
+&lt;method-spec&gt;
+is a method specification. It is a single token made up of three parts: a
+<i>classname</i>, a <i>methodname</i> and a <i>descriptor</i>. e.g.
+
+<pre><font size=-1>
+     java/lang/System/exit(I)V
+</font></pre>
+is
+the method called "exit" in the class called "java.lang.System", and it has the
+descriptor "(I)V" (i.e. it takes an integer argument and returns no result). In
+Jasmin, the characters up to the '(' character in &lt;method-spec&gt; form the
+<i>classname</i> and <i>methodname</i> (the <i>classname</i> is all the
+characters up to the last '/' character, and the <i>methodname</i> is all the
+characters between the last '/' and the '(' character). The characters from '('
+to the end of the string are the <i>descriptor</i>. This is illustrated in the
+following diagram:
+
+<pre><font size=-1>
+
+     foo/baz/Myclass/myMethod(Ljava/lang/String;)V
+     ---------------         ---------------------
+           |         --------         |
+           |            |             |
+         classname  methodname    descriptor
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">argN
+<BR></TD>
+<TD colspan=1 align="left">[result]
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg3
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg1
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>invokestatic</tt> calls a static method (also known as a class
+method). For example, if you write in Java:
+
+<pre><font size=-1>
+    System.exit(1);
+</font></pre>
+this
+is compiled into the JVM code:
+
+<pre><font size=-1>
+    iconst_1      ; push 1 onto the stack.
+                  ; now call System.exit()
+    invokestatic java/lang/System/exit(I)V
+</font></pre>
+Before
+performing the method invokation, the class and the method identified by
+&lt;method-spec&gt; are resolved. See Chapter 9 for a description of how
+methods are resolved.<p>
+<tt>invokestatic</tt> looks at the <i>descriptor</i> given in
+&lt;method-spec&gt;, and determines how many arguments the method takes (this
+may be zero). It pops these arguments off the operand stack. Then it searches
+the list of  static methods defined by the class, locating the method
+<i>methodname</i> with a descriptor <i>descriptor</i>. <p>
+Once the method has been located, <tt>invokestatic</tt> calls the method.
+First, if the method is marked as <tt>synchronized</tt>, the monitor associated
+with the class object for the method's class is entered. Next, a new stack
+frame structure is established on the call stack. Then the arguments for the
+method (which were popped off the current method's operand stack) are placed in
+local variables of the new stack frame structure. arg1 is stored in local
+variable 0, arg2 is stored in local variable 1 and so on. Finally, execution
+continues at the first instruction in the bytecode of the new method. <p>
+Methods marked as <tt>native</tt> are handled slightly differently. For native
+methods, the runtime system locates the platform-specific code for the method,
+loading it and linking it into the JVM if necessary. Then the native method
+code is executed with the arguments that were popped from the operand stack.
+The exact mechanism used to invoke native methods is implementation-specific.<p>
+When the method called by <tt>invokestatic</tt> returns, any single (or double)
+word <tt>return</tt> result is placed on the operand stack of the current
+method. If the invoked method was marked as <tt>synchronized</tt>, the monitor
+associated with the class named in &lt;method-spec&gt; is exited. Execution
+continues at the instruction that follows <tt>invokestatic</tt> in the
+bytecode.<p>
+<b>Exceptions</b><p>
+<b></b>StackOverflowError - no more space in callstack for a new stack frame<p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, after the <tt>invokestatic</tt> opcode is a 16-bit unsigned
+integer <i>index</i>. This is the index of an  entry in the constant pool. The
+entry is tagged as a CONSTANT_Methodref entry. This entry has two fields. One
+field points to a CONSTANT_Class entry in the constant pool whose name is the
+<i>classname</i> from &lt;method-spec&gt;, and the other points to a
+CONSTANT_NameAndType entry in the constant pool whose name is the
+<i>methodname</i> from &lt;method-spec&gt; and whose descriptor is the type
+<i>descriptor</i> from &lt;method-spec&gt;.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">invokestatic
+opcode = 0xB8 (184)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>invokevirtual</tt>, <tt>invokespecial</tt>,
+<tt>invokeinterface</tt><p>
+<P><hr size=4>
+<A HREF="ref--33.html">prev</A>
+ <A HREF="ref--35.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

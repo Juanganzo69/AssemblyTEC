@@ -1,0 +1,94 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  lushr</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_lsub.html">prev</A>
+ <A HREF="ref-_lxor.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ lushr</H6>
+<b></b><p>
+<b><center></b><i> long integer logical shift right</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    lushr
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1
+<BR></TD>
+<TD colspan=1 align="left">result-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word1
+
+<BR></TD>
+<TD colspan=1 align="left">result-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word2
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Pops an integer and a  long integer and from the stack. Shifts
+<i>value2</i> (the long integer) right by the amount indicated in the low six
+bits of <i>value1</i> (an int). The long integer result<i> </i>is then pushed
+back onto the stack. The value is shifted logically (ignoring the sign
+extension - useful for unsigned values).<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; This is like the Java code:
+;      long x;
+;      x &gt;&gt;&gt;= 3;
+;
+lload_1          ; load long in local variable 1 onto stack
+iconst_3         ; push the integer 3 onto the stack
+lushr            ; logical shift right
+lstore_1         ; store the long result in local variable 1
+</font></pre>
+<b></b><p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lushr
+opcode = 0x7D (125)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>ishl</tt>, <tt>ishr</tt>, <tt>iushr</tt>, <tt>lshl</tt>,
+<tt>lshr</tt>, <tt>iand</tt>, <tt>land</tt>, <tt>ior</tt>, <tt>lor</tt>,
+<tt>ixor</tt>, <tt>lxor</tt><p>
+<P><hr size=4>
+<A HREF="ref-_lsub.html">prev</A>
+ <A HREF="ref-_lxor.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

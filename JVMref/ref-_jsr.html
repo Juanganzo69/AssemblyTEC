@@ -1,0 +1,130 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  jsr</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_ixor.html">prev</A>
+ <A HREF="ref-_jsr_w.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ jsr</H6>
+<b></b><p>
+<b><center></b><i> jump to subroutine</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    jsr &lt;label&gt;
+</font></pre>
+&lt;label&gt;
+is a label name. To define the location of the label, use the &lt;label&gt;
+name followed by a colon:
+
+<pre><font size=-1>
+&lt;label&gt;:
+</font></pre>
+&lt;label&gt;
+then becomes associated the address of the following instruction. Labels can
+only be assigned one location in a method. On the other hand, a single
+&lt;label&gt; can be the target of multiple branch instructions.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">return-address
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>This calls a local subroutine defined within the body of a method. It is
+used to implement Java's <tt>finally</tt> clause.<p>
+<tt>jsr</tt> first pushes the address (<i>pc</i> + 3) onto the operand stack,
+where <i>pc</i> is the address of this <tt>jsr</tt> instruction in the
+bytecode. The address (<i>pc</i> + 3) is  the address of instruction that
+immediately follows the <tt>jsr</tt> instruction in bytecode - it is used  used
+by the <tt>ret</tt> instruction to return from the subroutine. <p>
+Next, execution branches to the address (<i>pc</i> + <i>branchoffset</i>),
+where <i>pc</i> is the address of the <tt>jsr</tt> opcode in the bytecode and
+<i>branchoffset</i> is the 16-bit signed integer parameter following the
+<tt>jsr</tt> opcode in the bytecode. If you are using Jasmin,
+<i>branchoffset</i> is computed for you from the address of &lt;label&gt;. <p>
+<b> Example</b>
+
+<pre><font size=-1>
+; This example method uses a PrintMe subroutine to invoke the System.out.println() method.
+
+.method usingSubroutine()V
+    ldc "Message 1"
+    jsr PrintMe          ; print "Message 1"
+
+    ldc "Message 2"
+    jsr PrintMe          ; print "Message 2"
+
+    ldc "Message 3"
+    jsr PrintMe          ; print "Message 3"
+
+    return   ; now return from usingSubroutine
+
+; define the PrintMe subroutine ...
+PrintMe:       
+    astore_1            ; store return-address in local variable 1
+    ; call System.out.println()
+    getstatic java/lang/System/out Ljava/io/PrintStream;
+    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+
+    ret 1               ; return to the return-address in local variable 1
+.end method
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">jsr
+opcode = 0xA8 (168)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s2 
+<BR></TD>
+<TD colspan=1 align="left"><i>branchoffset</i>
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>jsr_w</tt>, <tt>ret</tt>, <tt>goto</tt>, <tt>goto_w</tt><p>
+<b> Notes</b><p>
+<b></b>1. Addresses are measured in bytes from the start of the bytecode (i.e.
+address 0 is the first byte in the bytecode of the currently executing
+method).<p>
+2. Subroutines complicate the work of the class file verifier, so extensive use
+of subroutines may slow down verification speeds.<p>
+<P><hr size=4>
+<A HREF="ref-_ixor.html">prev</A>
+ <A HREF="ref-_jsr_w.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

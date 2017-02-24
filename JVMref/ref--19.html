@@ -1,0 +1,166 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  getstatic</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--18.html">prev</A>
+ <A HREF="ref-_goto.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ getstatic</H6>
+<b></b><p>
+<b><center></b><i> get value of static field</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+       getstatic &lt;field-spec&gt; &lt;descriptor&gt;
+</font></pre>
+&lt;field-spec&gt;
+is composed of two parts, a <i>classname</i> and a <i>fieldname</i>. The
+<i>classname</i> is all of the characters in the &lt;field-spec&gt; up to the
+last '/' character, and the <i>fieldname</i> is the rest of the characters
+after the last '/'. For example: 
+
+<pre><font size=-1>
+    foo/baz/AnotherClass/aVeryLongFieldName
+    -- classname -------/-- fieldname -----
+
+</font></pre>
+{{JM
+- can we turn this into a nicer diagram?}}
+
+<pre><font size=-1>
+
+</font></pre>
+&lt;descriptor&gt;
+is the Java type descriptor for the field, for example
+<tt>Ljava/io/PrintStream;</tt><p>
+<tt></tt>In Jasmin, the <tt>.field</tt> directive is used to add a field to a
+class. See Chapter 16 for a description of this and other Jasmin directives.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">value
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE>or,
+for static fields that hold doubles or longs:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">value-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">value-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>getstatic</tt> pops <i>objectref</i> (a reference to an object) from
+the stack, retrieves the value of the static field (also known as a class
+field) identified by &lt;field-spec&gt; from <i>objectref</i>, and pushes the
+one-word or two-word value onto the operand stack. <p>
+For example, when you write the Java expression:
+
+<pre><font size=-1>
+    PrintStream obj = java.lang.System.out;
+</font></pre>
+this
+generates a call to <tt>getstatic</tt> like:
+
+<pre><font size=-1>
+    getstatic java/lang/System/out Ljava/io/PrintStream;
+    astore_1   ; store the object reference result in local variable 1
+</font></pre>
+In
+Jasmin, <tt>getstatic</tt> takes two parameters, &lt;field-spec&gt; and
+&lt;descriptor&gt;. &lt;field-spec&gt; provides <i>classname</i>, the name of
+the class that defines the static field, as well <i>fieldname</i>, as the name
+of the field. In the example above, the &lt;field-spec&gt; is
+"java/lang/System/out", indicating that the <i>classname</i> is
+"java/lang/System" and the <i>fieldname</i> is "out".  &lt;descriptor&gt;
+indicates the type of data held in the field, and is a standard Java type
+descriptor (see Chapter 4). In the example above, &lt;descriptor&gt; is
+"Ljava/io/PrintStream;", i.e. a reference to a PrintStream object.<p>
+<tt>getstatic</tt> first resolves <i>classname</i> into a Java class. Then it
+locates the <i>fieldname</i> in that class, determining the <i>width</i> of the
+field (in bytes) and its <i>offset</i> (in bytes) from the base of the class's
+static data. The type of the field must match &lt;descriptor&gt;. See Chapter 7
+for more on how fields are resolved<p>
+To retrieve the value for the field, <tt>getstatic</tt> obtains the bytes
+starting at <i>offset</i> and extending for <i>width</i> bytes from the start
+of the class's static  data, expands it to either a 4-byte or 8-byte value, and
+pushes the value onto the operand stack.<p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, the <tt>getstatic</tt> opcode is followed by a 16-bit
+unsigned integer <i>index</i>. This is the index of an entry in the constant
+pool of the current class. The entry is tagged a CONSTANT_Fieldref entry. The
+fieldref entry lists a CONSTANT_Class entry in the constant pool whose name is
+the <i>classname</i> given in &lt;field-spec&gt;, as well as a
+CONSTANT_NameAndType entry in the constant pool, whose name is  the
+<i>fieldname</i> given in &lt;field-spec&gt;, and whose descriptor is the
+string given by &lt;descriptor&gt;.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">getstatic
+opcode = 0xB2 (178)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><p>
+<b> See Also</b><p>
+<b></b><tt>putfield</tt>, <tt>getfield</tt>, <tt>putstatic</tt><p>
+<b>Notes</b><p>
+<b></b>Fields cannot be overriden, although they can be 'shadowed'. For
+example, with the two classes:
+
+<pre><font size=-1>
+    class A { static int x; }
+and
+    class B extends A { static int x; }
+</font></pre>
+then
+the runtime system will allocate storage for both the static field "A/x" and
+the static field "B/x". Which field is accessed is determined by the class name
+given in &lt;field-spec&gt;.<p>
+<P><hr size=4>
+<A HREF="ref--18.html">prev</A>
+ <A HREF="ref-_goto.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

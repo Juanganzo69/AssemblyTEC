@@ -1,0 +1,132 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  lstore</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_lshr.html">prev</A>
+ <A HREF="ref--43.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ lstore</H6>
+<b></b><p>
+<b><center></b><i> store long integer in local variable</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    lstore &lt;varnum&gt;
+or
+    wide
+    lstore &lt;varnum&gt;
+
+</font></pre>
+In
+the first form, &lt;varnum&gt; is an unsigned integer in the range 0 to 0xFF.
+In the second (wide) form, &lt;varnum&gt; is an unsigned integer in the range 0
+to 0xFFFE.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">long-word1
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">long-word2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>lstore</tt> pops a two-word long integer off the operand stack and
+stores it in a local variable. It takes a single parameter, &lt;varnum&gt;, an
+unsigned integer indicating which local variable to use.<p>
+Since long integers are 64-bits <tt>wide</tt>, and each local variable can only
+hold up to 32 bits Java uses two consecutive local variables, &lt;varnum&gt;
+and &lt;varnum&gt; + 1  to store a long. So <tt>lstore &lt;varnum&gt;</tt>
+actually modifies the values of both &lt;varnum&gt; (which is set to
+<i>long-word1</i>) and &lt;varnum&gt; + 1 (which is set to
+<i>long-word2).</i><p>
+<i></i>Both &lt;varnum&gt; and &lt;varnum&gt; + 1 must be valid local variable
+numbers in the current frame, and together they must be holding a long. <p>
+Remember that attempting to treat two-word values as two independent
+single-word values will produce a verification error. So trying to retrieve
+&lt;varnum&gt; or &lt;varnum&gt; + 1 independently (e.g. <tt>iload
+&lt;varnum&gt;</tt>) will produce a verification error. Similarly, if you store
+a value other than a long in &lt;varnum&gt;, then &lt;varnum&gt; + 1 becomes
+invalidated until a new value is stored in it.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+ldc2_w 10       ; push the long integer 10 onto the stack
+lstore 3        ; pop 10 off of the stack and store it in local variables 3 and 4
+</font></pre>
+<b>
+Bytecode</b><p>
+<b></b>For local variable numbers in the range 0-255, use:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lstore
+opcode = 0x37 (55)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1
+<BR></TD>
+<TD colspan=1 align="left">&lt;varnum&gt;
+<BR></TD></TR></TABLE>There
+is also a <tt>wide</tt> format for this instruction, which supports access to
+all local variables from 0 to 65535:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+<BR></TD>
+<TD colspan=1 align="left">wide
+opcode = 0xC4 (196)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lstore
+opcode = 0x37 (55)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">&lt;varnum&gt;
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>istore</tt>, <tt>fstore</tt>, <tt>dstore</tt>, <tt>astore</tt>,
+<tt>wide</tt><p>
+<P><hr size=4>
+<A HREF="ref-_lshr.html">prev</A>
+ <A HREF="ref--43.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

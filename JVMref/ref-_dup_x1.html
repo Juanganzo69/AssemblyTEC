@@ -1,0 +1,83 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  dup_x1</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--13.html">prev</A>
+ <A HREF="ref-_dup_x2.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ dup_x1</H6>
+<b></b><p>
+<b><center></b><i> duplicate top stack word and insert beneath second
+word</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    dup_x1
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">word1
+
+<BR></TD>
+<TD colspan=1 align="left">word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">word2
+<BR></TD>
+<TD colspan=1 align="left">word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Duplicates the top item on the stack and inserts the duplicate below the
+second-from-top item. Both items must be single-word items.<p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">dup_x1
+= 0x5A (90)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>dup</tt>, <tt>dup2</tt>, <tt>dup2_x1</tt>, <tt>dup2_x2</tt><p>
+<b> Notes</b><p>
+<b></b>This instruction cannot be used if either of item1 or item2 are two-word
+items. To duplicate a two-word item (a long or a double) you must use
+<tt>dup2</tt>, <tt>dup2_x1</tt> or <tt>dup2_x2</tt>.<p>
+<P><hr size=4>
+<A HREF="ref--13.html">prev</A>
+ <A HREF="ref-_dup_x2.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

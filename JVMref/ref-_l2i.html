@@ -1,0 +1,72 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  l2i</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_l2f.html">prev</A>
+ <A HREF="ref-_ladd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ l2i</H6>
+<b></b><p>
+<b><center></b><i> long to integer conversion</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    l2i
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">long-word1
+<BR></TD>
+<TD colspan=1 align="left">integer
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">long-word2
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Pops a long integer off of the stack, discards the most significant 32
+bits, and pushes the low 32 bits onto the stack as an int. This may cause the
+magnitude or sign of the value to change.<p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">l2i
+opcode = 0x88 (136)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>l2f</tt>, <tt>l2d</tt><p>
+<P><hr size=4>
+<A HREF="ref-_l2f.html">prev</A>
+ <A HREF="ref-_ladd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

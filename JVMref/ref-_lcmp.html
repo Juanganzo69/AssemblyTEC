@@ -1,0 +1,98 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  lcmp</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--38.html">prev</A>
+ <A HREF="ref--39.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ lcmp</H6>
+<b></b><p>
+<b><center></b><i> long integer comparison</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    lcmp
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1-word1
+<BR></TD>
+<TD colspan=1 align="left">int-result
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value1-word2
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word1
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value2-word2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Takes two two-word long integers off the stack and compares them. If the
+two integers are the same, the int 0 is pushed onto the stack. If <i>value2</i>
+is greater than <i>value1</i>, the int 1 is pushed onto the stack. If
+<i>value1</i> is greater than <i>value2</i>, the int -1 is pushed onto the
+stack.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; This is like the Java expression:
+;     (x &gt; 0)
+; where x is a long.
+
+lload_1       ; push the long int in local variable 1
+lconst_0      ; push the long integer 0 onto the stack
+lcmp          ; compare the two long integers
+
+; The integer result on the stack is:
+;     0 if local variable 1 equals 0
+;     -1 if local variable 1 is less than 0
+;     1 if local variable 1 is greater than 0
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lcmp
+opcode = 0x94 (148)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>fcmpl</tt>, <tt>fcmpg</tt>, <tt>dcmpl</tt>, <tt>dcmpg</tt><p>
+<P><hr size=4>
+<A HREF="ref--38.html">prev</A>
+ <A HREF="ref--39.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

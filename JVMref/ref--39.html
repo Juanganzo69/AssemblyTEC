@@ -1,0 +1,111 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  lconst_&lt;l&gt;</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_lcmp.html">prev</A>
+ <A HREF="ref-_ldc.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ lconst_&lt;l&gt;</H6>
+<b></b><p>
+<b><center></b><i> push the long integer 0 or 1</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    lconst_0
+or
+    lconst_1
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">&lt;l&gt;-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">&lt;l&gt;-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>lconst_&lt;l&gt;</tt> represents the two opcodes lconst_0, lconst_1
+that are used to push the constant long integers 0 and 1 onto the stack. For
+example, to push the long integer zero onto the stack, use:
+
+<pre><font size=-1>
+
+    lconst_0 ; push long integer 0 onto the stack
+
+</font></pre>
+Note
+that you could also use:
+
+<pre><font size=-1>
+
+    ldc2_w 0    ; push the long integer 0 onto the stack
+
+</font></pre>
+although
+this instruction takes more space in the class file and is also slower.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+lconst_0    ; push the long int 0 onto the stack
+lconst_1    ; push the long int 1 onto the stack
+
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lconst_0
+opcode = 0x09 (9)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lconst_1
+opcode = 0x0A (10)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>bipush</tt>, <tt>sipush</tt>, <tt>ldc</tt>, <tt>ldc_w</tt>,
+<tt>ldc2_w</tt>, <tt>aconst_null</tt>, <tt>iconst_m1</tt>
+<tt>iconst_&lt;n&gt;</tt>, <tt>fconst_&lt;f&gt;</tt>,
+<tt>dconst_&lt;d&gt;</tt><p>
+<P><hr size=4>
+<A HREF="ref-_lcmp.html">prev</A>
+ <A HREF="ref-_ldc.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

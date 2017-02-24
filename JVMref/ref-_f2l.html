@@ -1,0 +1,81 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  f2l</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_f2i.html">prev</A>
+ <A HREF="ref-_fadd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ f2l</H6>
+<b></b><p>
+<b><center></b><i> convert float to long integer</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    f2l
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">float
+<BR></TD>
+<TD colspan=1 align="left">long-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">long-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>This is used to cast a single precision float value into a 64-bit long
+integer value. <tt>f2l</tt> removes a float from the stack, converts it to a
+long integer, and pushes the two-word long integer back onto the stack.<p>
+Rounding is done using IEEE 754 round-to-nearest mode. The fractional part is
+lost by rounding towards zero, so (long)-3.14 becomes -3.<p>
+If the original value is NaN, the result is 0. If the value is too large to be
+represented as an integer, or if it is positive infinity, the result is the
+largest possible long integer Long.MAX_VALUE. If the value is too small (i.e. a
+negative value of large magnitude, or negative infinity) then the result is the
+most negative long integer Long.MIN_VALUE.<p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">f2l
+opcode = 0x8C (140)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>f2i</tt>, <tt>f2d</tt><p>
+<P><hr size=4>
+<A HREF="ref-_f2i.html">prev</A>
+ <A HREF="ref-_fadd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,202 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - tableswitch</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-swap.html">prev</A>
+ <A HREF="ref-wide.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+tableswitch</H6>
+<b></b><p>
+<b><center></b><i>jump according to a table</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+     tableswitch  &lt;low&gt; [&lt;high&gt;]
+                  &lt;label1&gt;
+                  &lt;label2&gt;
+                  ...
+                  &lt;labelN&gt;
+        default : &lt;defaultLabel&gt; 
+</font></pre>
+&lt;low&gt;
+is a 32-bit signed integer. &lt;label1&gt;, &lt;label2&gt;, etc. are label
+names. &lt;high&gt; is a 32-bit signed integer which is greater than or equal
+to &lt;low&gt;. There must be &lt;high&gt;-&lt;low&gt;+1 labels given in the
+table. If &lt;high&gt; is omitted, Jasmin calculates it for you based on the
+number of entries in the table.<p>
+To define the location of the label, use the &lt;label&gt; name followed by a
+colon:
+
+<pre><font size=-1>
+&lt;label&gt;:
+</font></pre>
+&lt;label&gt;
+then becomes associated the address of the following instruction. Labels can
+only be assigned one location in a method. On the other hand, a single
+&lt;label&gt; can be the target of multiple branch instructions.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">val
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>tableswitch</tt> is used to perform computed jump. The jump table
+used by <tt>tableswitch</tt> is given in the bytecode after the
+<tt>tableswitch</tt> opcode.<p>
+An integer, <i>val</i>, is popped off the top of the operand stack. If this
+value is less than &lt;low&gt;, or if it is greater than &lt;high&gt;,
+execution branches to the address (<i>pc</i> + <i>default_offset</i>), where
+<i>pc</i> is the address of the <tt>tableswitch</tt> opcode in the bytecode,
+and <i>default_offset</i> is taken from the bytecode and is the relative
+address of the instruction at &lt;defaultLabel&gt;.<p>
+If val is in the range &lt;low&gt; to &lt;high&gt;, execution branches to the
+i'th entry in the table, where i is (<i>val</i> - &lt;low&gt;) and the first
+entry in the table is <i>index</i> 0. i.e. <i>pc</i> becomes the address
+(<i>pc</i> + table[<i>val</i> - &lt;low&gt;]).<p>
+The following pseudo-code illustrates the computation performed by
+<tt>tableswitch</tt>:
+
+<pre><font size=-1>
+int val = pop();                // pop an int from the stack
+if (val &lt; low || val &gt; high) {  // if its less than &lt;low&gt; or greater than &lt;high&gt;,
+    pc += default;              // branch to default 
+} else {                        // otherwise
+    pc += table[val - low];     // branch to entry in table
+}
+</font></pre>
+Notice
+that all addresses stored in the table are relative to the address of the
+<tt>tableswitch</tt> opcode in the bytecode. If you are using Jasmin, these
+addresses are computed for you from the address of  the given labels.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+    iload_1 ; push local variable 1 onto the stack
+
+    ; if the variable contains 0, jump to ZeroLabel
+    ; if the variable contains 1, jump to OneLabel
+    ; if the variable contains 2, jump to TwoLabel
+    ; otherwis jump to DefaultLabel
+    tableswitch 0 2
+        ZeroLabel
+        OneLabel
+        TwoLabel
+      default: DefaultLabel
+
+ZeroLabel:
+    ; the variable contained 0 ...
+    ldc 100
+    ireturn   ; return the result 100
+
+OneLabel:
+    ; the variable contained 1 ...
+    bipush 200
+    ireturn   ; return the result 200
+
+TwoLabel:
+    ; the variable contained 2 ...
+    bipush 300
+    ireturn   ; return the result 300
+
+DefaultLabel:
+    ; the variable contained something else ...
+    bipush 0
+    ireturn   ; return the result 0
+</font></pre>
+
+   <p>
+<b>Bytecode</b><p>
+<b></b><tt>tableswitch</tt> is a variable length instruction. Immediately after
+the <tt>tableswitch</tt> opcode, between 0 to 3 bytes of padding zeros are
+inserted, so that the <i>default_offset</i> parameter starts at an offset in
+the bytecode which is a multiple of 4. Next, two signed 32-bit integers are
+given - low and high, followed by (low - high + 1) 32-bit integer offsets.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">tableswitch
+opcode = 0xAA (170)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+- 
+<BR></TD>
+<TD colspan=1 align="left">...0-3
+bytes of padding ...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left"><i>default_offset</i>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">&lt;low&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">&lt;low&gt;
++ N - 1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">offset_1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">offset_2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+... 
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">offset_N
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>lookupswitch</tt><p>
+<b>Notes</b><p>
+<b></b>Addresses are measured in bytes from the start of the bytecode (i.e.
+address 0 is the first byte in the bytecode of the currently executing
+method).<p>
+<P><hr size=4>
+<A HREF="ref-swap.html">prev</A>
+ <A HREF="ref-wide.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

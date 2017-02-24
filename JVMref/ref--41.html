@@ -1,0 +1,192 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  lookupswitch</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_lneg.html">prev</A>
+ <A HREF="ref-_lor.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ lookupswitch</H6>
+<b></b><p>
+<b><center></b><i> match key in table and jump</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    lookupswitch
+        &lt;key1&gt;   : &lt;label1&gt;
+        &lt;key2&gt;   : &lt;label2&gt;
+        ...
+        &lt;keyN&gt;   : &lt;labelN&gt;
+        default  : &lt;labelDefault&gt;
+</font></pre>
+&lt;key1&gt;,
+&lt;key2&gt; etc. are 32-bit integers. &lt;label1&gt;, &lt;label2&gt;, etc. are
+label names. <p>
+To define the location of the label, use the &lt;label&gt; name followed by a
+colon:
+
+<pre><font size=-1>
+&lt;label&gt;:
+</font></pre>
+&lt;label&gt;
+then becomes associated the address of the following instruction. Labels can
+only be assigned one location in a method. On the other hand, a single
+&lt;label&gt; can be the target of multiple branch instructions.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">item
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>This is used to perform an efficient compare-and-jump, as might be
+needed for a switch statement. The table used by <tt>lookupswitch</tt> is given
+after the <tt>lookupswitch</tt> opcode in bytecode.<p>
+<tt>lookupswitch</tt> works as follows. First, an int, <i>item,</i> is taken
+from the top of the stack. Then, lookupswitch searches the table looking for an
+entry whose &lt;key&gt; field matches <i>item</i>. If a match is found,
+execution branches to the address of the corresponding &lt;label&gt;. If no
+match is found, execution branches to &lt;labelDefault&gt;.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; this is like the Java code:
+;      switch (i) {
+;           case 1:     return(10);
+;           case 10:    return(100);
+;           default:    return(0);
+;      }
+    iload_1    ; push local variable 1 onto the stack (i.e. i)
+
+    ; switch based on the value on the stack
+    lookupswitch
+        1       : Label1
+        10      : Label2
+        default : Dlabel
+Label1:               ; local variable 1 holds the value 1
+    bipush 10    
+    ireturn    ; return 10
+
+Label2:               ; local variable 1 holds the value 10
+    bipush 100
+    ireturn    ; return 100
+
+Dlabel:               ; local variable 1 holds something else 
+    bipush 0
+    return    ; return 0
+</font></pre>
+<b>
+Bytecode</b><p>
+<b></b><tt>lookupswitch</tt> is a variable length instruction. After the
+<tt>lookupswitch</tt> opcode, between 0 to 3 bytes of padding zeros are
+inserted, so that the <i>default_offset</i> parameter starts at an offset in
+the bytecode which is a multiple of 4. Next, a 32-bit int n &gt;= 0 is given,
+indicating the number of key/value integer pairs in the table. This is followed
+by n pairs of ints. For each pair, the first 32-bit int value is the key, and
+the second 32-bit int value is the relative offset to jump to if that key is
+matched. (the offset is relative to the address of the lookupswitch instruction
+in bytecode). 
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">lookupswitch
+opcode = 0xAB (171)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+- 
+<BR></TD>
+<TD colspan=1 align="left">...0-3
+bytes of padding ...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">default_offset
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">n
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">key_1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">offset_1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">key_2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">offset_2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+... 
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">key_n
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s4 
+<BR></TD>
+<TD colspan=1 align="left">offset_n
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>tableswitch</tt><p>
+<b>Notes</b><p>
+<b></b>1. Addresses are measured in bytes from the start of the bytecode (i.e.
+address 0 is the first byte in the bytecode of the currently executing
+method).<p>
+2. Addresses given in the table are relative - the values in the table are
+added to the current <i>pc</i> (i.e. the address of this lookupswitch
+instruction) to obtain the new value for <i>pc</i>. <p>
+3. Keys in the table must be sorted in increasing order, so &lt;key1&gt; is
+less than &lt;key2&gt;, and so on up to &lt;keyN&gt;. Jasmin performs this
+sorting automatically.<p>
+4. Even though offsets in the table are given as 32-bit ints, the maximum
+address in a Java method is limited by other factors to 65535. <p>
+<P><hr size=4>
+<A HREF="ref-_lneg.html">prev</A>
+ <A HREF="ref-_lor.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

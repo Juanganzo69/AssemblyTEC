@@ -1,0 +1,95 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - athrow</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--3.html">prev</A>
+ <A HREF="ref-_baload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+athrow</H6>
+<b></b><p>
+<b><center></b><i> throw an  exception</i><p>
+<i></center></i><b> Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    athrow
+
+</font></pre>
+<b>
+Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+
+<BR></TD>
+<TD colspan=1 align="left">n/a
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Removes objectref (a reference to an object) from the operand stack, and
+'throws' the exception represented by that object. objectref  is an instance of
+Throwable or one of its subclasses. <p>
+To throw an exception, the system searches for a handler for objectref's class
+in the exception table of the currently active method. <p>
+If no handler is found, the current method's frame is discarded, its invoker's
+frame is reinstated, and the exception is immediately rethrown. This process is
+repeated until a handler is found or until there are no more procedures on the
+callstack (at which point, the current thread dies, typically printing out an
+error message).<p>
+If a handler is found, the operand stack of the active method is cleared,
+<i>objectref</i> is pushed on the operand stack of the current method, and
+execution continues at the first instruction of the handler. <p>
+See Chapter 10 for a full description of exceptions in the JVM.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; Throw an IOException. This is equivalent to the Java code:
+;
+;   throw new java.io.IOException();
+;
+new java/io/IOException          ; 1) create and initialize an IOException instance
+dup                                     
+invokespecial java/io/IOException/&lt;init&gt;()V 
+athrow                           ; 2) throw the IOException instance on the stack
+
+</font></pre>
+<b>Exceptions</b><p>
+<b></b>NullPointerException - the <i>objectref</i> on the stack is
+<tt>null</tt>.<p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">athrow
+opcode = 0xBF (191)
+<BR></TD></TR></TABLE><P><hr size=4>
+<A HREF="ref--3.html">prev</A>
+ <A HREF="ref-_baload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,211 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  invokespecial</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--32.html">prev</A>
+ <A HREF="ref--34.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ invokespecial</H6>
+<b></b><p>
+<b><center></b><i> invoke method belonging to a specific class</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    invokespecial &lt;method-spec&gt;
+</font></pre>
+&lt;method-spec&gt;
+is a method specification. It is a single token made up of three parts: a
+<i>classname</i>, a <i>methodname</i> and a <i>descriptor</i>. e.g.
+
+<pre><font size=-1>
+     java/lang/StringBuffer/&lt;init&gt;()V
+</font></pre>
+is
+the method called "&lt;init&gt;" (the special name used for instance
+initialization methods) in the class called "java.lang.StringBuffer", and it
+has the descriptor "()V" (i.e. it takes no arguments and no results). In
+Jasmin, the characters up to the '(' character in &lt;method-spec&gt; form the
+<i>classname</i> and <i>methodname</i> (the <i>classname</i> is all the
+characters up to the last '/' character, and the <i>methodname</i> is all the
+characters between the last '/' and the '(' character). The characters from '('
+to the end of the string are the <i>descriptor</i>. This is illustrated in the
+following diagram:
+
+<pre><font size=-1>
+
+     foo/baz/Myclass/myMethod(Ljava/lang/String;)V
+     ---------------         ---------------------
+           |         --------         |
+           |            |             |
+         classname  methodname    descriptor
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">argN
+<BR></TD>
+<TD colspan=1 align="left">[result]
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">---
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg2
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arg1
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">objectref
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>invokespecial</tt> is used in certain special cases to invoke a
+method Specifically, <tt>invokespecial</tt> is used to invoke:<p>
+the instance initialization method, &lt;init&gt;<p>
+a <tt>private</tt> method of <tt>this</tt><p>
+a method in a superclass of <tt>this</tt><p>
+The main use of <tt>invokespecial</tt> is to invoke an object's instance
+initialization method, &lt;init&gt;, during the construction phase for a new
+object. For example, when you write in Java:
+
+<pre><font size=-1>
+new StringBuffer()
+</font></pre>
+code
+like the following is generated:
+
+<pre><font size=-1>
+new java/lang/StringBuffer         ; create a new StringBuffer
+dup                                ; make an extra reference to the new instance
+                                   ; now call an instance initialization method
+invokespecial java/lang/StringBuffer/&lt;init&gt;()V
+                                   ; stack now contains an initialized StringBuffer.
+</font></pre>
+<tt>invokespecial</tt>
+is also used by the Java language by the 'super' keyword to access a
+superclass's version of a method. For example, in the class:
+
+<pre><font size=-1>
+   class Example {
+       // override equals
+       public boolean equals(Object x) {
+            // call Object's version of equals
+            return super.equals(x);
+       }
+   }
+</font></pre>
+the
+'super.equals(x)' expression is compiled to:
+
+<pre><font size=-1>
+aload_0  ; push 'this' onto the stack
+aload_1  ; push the first argument (i.e. x) onto the stack
+; now invoke Object's equals() method.
+invokespecial java/lang/Object/equals(Ljava/lang/Object;)Z
+</font></pre>
+Finally,
+invokespecial is used to invoke a private method. Remember that private methods
+are only visible to other methods belonging the same class as the private
+method.   <p>
+Before performing the method invokation, the class and the method identified by
+&lt;method-spec&gt; are resolved. See Chapter 9 for a description of how
+methods are resolved.<p>
+<tt>invokespecial</tt> first looks at the <i>descriptor</i> given in
+&lt;method-spec&gt;, and determines how many argument words the method takes
+(this may be zero). It pops these arguments off the operand stack. Next it pops
+<i>objectref</i> (a reference to an object) off the operand stack.
+<i>objectref</i> must be an instance of the class named in &lt;method-spec&gt;,
+or one of its subclasses. The interpreter searches the list of methods defined
+by the class named in &lt;method-spec&gt;, looking for a method called
+<i>methodname</i> whose descriptor is <i>descriptor</i>. This search is not
+based on the runtime type of <i>objectref</i>, but on the compile time type
+given in &lt;method-spec&gt;.<p>
+Once a method has been located, <tt>invokespecial</tt> calls the method. First,
+if the method is marked as <tt>synchronized</tt>, the monitor associated with
+<i>objectref</i> is entered. Next, a new stack frame structure is established
+on the call stack. Then the arguments for the method (which were popped off the
+current method's operand stack) are placed in local variables of the new stack
+frame structure. arg1 is stored in local variable 1, arg2 is stored in local
+variable 2 and so on. <i>objectref</i> is stored in local variable 0 (the local
+variable used for the special Java variable <tt>this</tt>). Finally, execution
+continues at the first instruction in the bytecode of the new method. <p>
+Methods marked as <tt>native</tt> are handled slightly differently. For native
+methods, the runtime system locates the platform-specific code for the method,
+loading it and linking it into the JVM if necessary. Then the native method
+code is executed with the arguments popped from the operand stack. The exact
+mechanism used to invoke native methods is implementation-specific.<p>
+When the method called by <tt>invokespecial</tt> returns, any single (or
+double) word <tt>return</tt> result is placed on the operand stack of the
+current method. If the invoked method was marked as <tt>synchronized</tt>, the
+monitor associated with <i>objectref</i> is exited. Execution continues at the
+instruction that follows <tt>invokespecial</tt> in the bytecode. <p>
+<b>Exceptions</b><p>
+<b></b>NullPointerException - <i>objectref</i> is <tt>null</tt><p>
+StackOverflowError - no more space in callstack for a new stack frame<p>
+<b>Bytecode</b><p>
+<b></b>In bytecode, after the <tt>invokespecial</tt> opcode is a 16-bit
+unsigned integer <i>index</i>. This is the index of an  entry in the constant
+pool. The entry is tagged as a CONSTANT_Methodref entry. This entry has two
+fields. One field points to a CONSTANT_Class entry in the constant pool whose
+name is the <i>classname</i> from &lt;method-spec&gt;, and the other points to
+a CONSTANT_NameAndType entry in the constant pool whose name is the
+<i>methodname</i> from &lt;method-spec&gt; and whose descriptor is the type
+<i>descriptor</i> from &lt;method-spec&gt;.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">invokespecial
+opcode = 0xB7 (183)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u2 
+<BR></TD>
+<TD colspan=1 align="left">index
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>invokevirtual</tt>, <tt>invokeinterface</tt>,
+<tt>invokestatic</tt><p>
+<tt></tt><b>Notes</b><p>
+<b></b>1. In Java Virtual Machine implementations prior to version JDK 1.02,
+this instruction was called <tt>invokenonvirtual</tt>, and was less restrictive
+than <tt>invokespecial</tt> - it wasn't limited to invoking only superclass,
+private or &lt;init&gt; methods. The class access flag ACC_SUPER (see Chapter
+4) is used to indicate which semantics are used by a class. In older class
+files, the ACC_SUPER flag is unset. In all new classes, the ACC_SUPER flag
+should be set, indicating that the restrictions enforced by
+<tt>invokespecial</tt> are obeyed. (In practice, all the common uses of
+<tt>invokenonvirtual</tt> continue to be supported by <tt>invokespecial</tt>,
+so this change should have little impact on JVM users).<p>
+<P><hr size=4>
+<A HREF="ref--32.html">prev</A>
+ <A HREF="ref--34.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

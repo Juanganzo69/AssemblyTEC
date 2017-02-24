@@ -1,0 +1,69 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  breakpoint</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_bipush.html">prev</A>
+ <A HREF="ref-caload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ breakpoint</H6>
+<b></b><p>
+<b><center></b><i> reserved opcode</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    n/a
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>Description</b><p>
+<b></b>Opcode 0xCA (202) is a reserved opcode with the mnemonic
+<tt>breakpoint</tt>. This opcode is reserved for internal use by a Java
+implementation, and must not appear in any class file - methods containing a
+<tt>breakpoint</tt> will fail verification. <p>
+In Sun's implementation, the breakpoint opcode is used internally as a
+place-holder indicating a point in a method where control should pass to the
+Java debugger (jdb).  <p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">breakpoint
+opcode = 0xCA (202)
+<BR></TD></TR></TABLE><b>See
+Also </b><p>
+<b></b><tt>impdep1</tt>, <tt>impdep2</tt>.<p>
+<P><hr size=4>
+<A HREF="ref-_bipush.html">prev</A>
+ <A HREF="ref-caload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

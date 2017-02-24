@@ -1,0 +1,222 @@
+<HTML><HEAD>
+<TITLE>Java Virtual Machine - Online Instruction Reference </TITLE></HEAD>
+<BODY BGCOLOR= white>
+
+<font face="Helvetica">
+<center>
+<H1>
+Java Virtual Machine<br>
+Online Instruction Reference</H1>
+</center>
+</font>
+<hr>
+<a href="http://www.ora.com/catalog/javavm">
+<img src="img.gif" border=0 align = right><p>
+</a>
+<b></b><p>
+<b></b>This document contains a <strong>DRAFT</strong> version of the instruction reference (Chapter 13) printed in
+<i>Java Virtual Machine</i>, by Jon Meyer and Troy Downing, published by
+O'Reilly Associates, ISBN 1-56592-194-1. See 
+<a href="http://www.ora.com/catalog/javavm">
+book details
+</a>
+for further information on this book.<p> 
+
+
+The material presented here probably has
+some typos and minor errors, but we felt that it would still be a useful
+reference source for people looking for details of the JVM. You can also see
+<a href="http://www.cat.nyu.edu/meyer/jasmin">
+Jasmin Home Page
+</a>
+for further information on Jasmin and the
+JVM.<p>
+
+<br clear=left>
+
+
+This material is provided on an "AS IS" basis without warranty of any kind,
+including without limitation the warranties of merchantability, fitness for a
+purpose and non-infringement. The entire risk as to the quality and performance
+of the Software is borne by you. Should the Software prove defective, you and
+not Chris Hector assume the entire cost of any service and repair. SOME
+JURISDICTIONS DO NOT ALLOW EXCLUSIONS OF AN IMPLIED WARRANTY, SO THIS
+DISCLAIMER MAY NOT APPLY TO YOU AND YOU MAY HAVE OTHER LEGAL RIGHTS THATVARY BY
+JURISDICTION.<p>
+ <p>
+<P><hr size=4>
+<UL>
+<LI><A HREF="ref-example.html"> example </A>
+<LI><A HREF="ref-aaload.html"> aaload </A>
+<LI><A HREF="ref-aastore.html"> aastore </A>
+<LI><A HREF="ref-aconst_n.html"> aconst_null </A>
+<LI><A HREF="ref-aload.html"> aload </A>
+<LI><A HREF="ref-aload__l.html"> aload_&lt;n&gt; </A>
+<LI><A HREF="ref-anewarra.html"> anewarray </A>
+<LI><A HREF="ref-.html">  areturn </A>
+<LI><A HREF="ref--2.html">   arraylength </A>
+<LI><A HREF="ref-_astore.html">  astore </A>
+<LI><A HREF="ref--3.html">  astore_&lt;n&gt; </A>
+<LI><A HREF="ref-athrow.html"> athrow </A>
+<LI><A HREF="ref-_baload.html">  baload </A>
+<LI><A HREF="ref--4.html">   bastore </A>
+<LI><A HREF="ref-_bipush.html">  bipush </A>
+<LI><A HREF="ref--5.html">  breakpoint </A>
+<LI><A HREF="ref-caload.html"> caload </A>
+<LI><A HREF="ref--6.html">  castore </A>
+<LI><A HREF="ref--7.html">  checkcast </A>
+<LI><A HREF="ref-_d2f.html">  d2f </A>
+<LI><A HREF="ref-_d2i.html">  d2i </A>
+<LI><A HREF="ref-_d2l.html">  d2l </A>
+<LI><A HREF="ref-_dadd.html">  dadd </A>
+<LI><A HREF="ref-_daload.html">  daload </A>
+<LI><A HREF="ref--8.html">  dastore </A>
+<LI><A HREF="ref-_dcmpg.html">  dcmpg </A>
+<LI><A HREF="ref-_dcmpl.html">  dcmpl </A>
+<LI><A HREF="ref--9.html">  dconst_&lt;d&gt; </A>
+<LI><A HREF="ref-_ddiv.html">  ddiv </A>
+<LI><A HREF="ref-_dload.html">  dload </A>
+<LI><A HREF="ref--10.html">  dload_&lt;n&gt; </A>
+<LI><A HREF="ref-dmul.html"> dmul </A>
+<LI><A HREF="ref-dneg.html"> dneg </A>
+<LI><A HREF="ref-drem.html"> drem </A>
+<LI><A HREF="ref-dreturn.html"> dreturn </A>
+<LI><A HREF="ref-_dstore.html">  dstore </A>
+<LI><A HREF="ref--11.html">  dstore_&lt;n&gt; </A>
+<LI><A HREF="ref-_dsub.html">  dsub </A>
+<LI><A HREF="ref-_dup.html">  dup </A>
+<LI><A HREF="ref-_dup2.html">  dup2 </A>
+<LI><A HREF="ref--12.html">  dup2_x1 </A>
+<LI><A HREF="ref--13.html">  dup2_x2 </A>
+<LI><A HREF="ref-_dup_x1.html">  dup_x1 </A>
+<LI><A HREF="ref-_dup_x2.html">  dup_x2 </A>
+<LI><A HREF="ref-_f2d.html">  f2d </A>
+<LI><A HREF="ref-_f2i.html">  f2i </A>
+<LI><A HREF="ref-_f2l.html">  f2l </A>
+<LI><A HREF="ref-_fadd.html">  fadd </A>
+<LI><A HREF="ref-_faload.html">  faload </A>
+<LI><A HREF="ref--14.html">  fastore </A>
+<LI><A HREF="ref-_fcmpg.html">  fcmpg </A>
+<LI><A HREF="ref-_fcmpl.html">  fcmpl </A>
+<LI><A HREF="ref--15.html">  fconst_&lt;f&gt; </A>
+<LI><A HREF="ref-_fdiv.html">  fdiv </A>
+<LI><A HREF="ref-_fload.html">  fload </A>
+<LI><A HREF="ref-fload__l.html"> fload_&lt;n&gt; </A>
+<LI><A HREF="ref-fmul.html"> fmul </A>
+<LI><A HREF="ref-_fneg.html">  fneg </A>
+<LI><A HREF="ref-_frem.html">  frem </A>
+<LI><A HREF="ref--16.html">  freturn </A>
+<LI><A HREF="ref-_fstore.html">  fstore </A>
+<LI><A HREF="ref--17.html">  fstore_&lt;n&gt; </A>
+<LI><A HREF="ref-_fsub.html">  fsub </A>
+<LI><A HREF="ref--18.html">  getfield </A>
+<LI><A HREF="ref--19.html">  getstatic </A>
+<LI><A HREF="ref-_goto.html">  goto </A>
+<LI><A HREF="ref-_goto_w.html">  goto_w </A>
+<LI><A HREF="ref-_i2b.html">  i2b </A>
+<LI><A HREF="ref-_i2c.html">  i2c </A>
+<LI><A HREF="ref-_i2d.html">  i2d </A>
+<LI><A HREF="ref-_i2f.html">  i2f </A>
+<LI><A HREF="ref-_i2l.html">  i2l </A>
+<LI><A HREF="ref-_i2s.html">  i2s </A>
+<LI><A HREF="ref-_iadd.html">  iadd </A>
+<LI><A HREF="ref-_iaload.html">  iaload </A>
+<LI><A HREF="ref-_iand.html">  iand </A>
+<LI><A HREF="ref--20.html">  iastore </A>
+<LI><A HREF="ref--21.html">  iconst_&lt;n&gt; </A>
+<LI><A HREF="ref--22.html">  iconst_m1 </A>
+<LI><A HREF="ref-_idiv.html">  idiv </A>
+<LI><A HREF="ref--23.html">  if_acmpeq </A>
+<LI><A HREF="ref--24.html">  if_acmpne </A>
+<LI><A HREF="ref--25.html">  if_icmpeq </A>
+<LI><A HREF="ref--26.html">  if_icmpge </A>
+<LI><A HREF="ref--27.html">  if_icmpgt </A>
+<LI><A HREF="ref--28.html">  if_icmple </A>
+<LI><A HREF="ref--29.html">  if_icmplt </A>
+<LI><A HREF="ref--30.html">  if_icmpne </A>
+<LI><A HREF="ref-_ifeq.html">  ifeq </A>
+<LI><A HREF="ref-_ifge.html">  ifge </A>
+<LI><A HREF="ref-ifgt.html"> ifgt </A>
+<LI><A HREF="ref-ifle.html"> ifle </A>
+<LI><A HREF="ref-iflt.html"> iflt </A>
+<LI><A HREF="ref-ifne.html"> ifne </A>
+<LI><A HREF="ref-ifnonnul.html"> ifnonnull </A>
+<LI><A HREF="ref-ifnull.html"> ifnull </A>
+<LI><A HREF="ref-iinc.html"> iinc </A>
+<LI><A HREF="ref-iload.html"> iload </A>
+<LI><A HREF="ref-iload__l.html"> iload_&lt;n&gt; </A>
+<LI><A HREF="ref-impdep1.html"> impdep1 </A>
+<LI><A HREF="ref-impdep2.html"> impdep2 </A>
+<LI><A HREF="ref-imul.html"> imul </A>
+<LI><A HREF="ref-_ineg.html">  ineg </A>
+<LI><A HREF="ref--31.html">  instanceof </A>
+<LI><A HREF="ref--32.html">  invokeinterface </A>
+<LI><A HREF="ref--33.html">  invokespecial </A>
+<LI><A HREF="ref--34.html">  invokestatic </A>
+<LI><A HREF="ref--35.html">  invokevirtual </A>
+<LI><A HREF="ref-_ior.html">  ior </A>
+<LI><A HREF="ref-_irem.html">  irem </A>
+<LI><A HREF="ref--36.html">  ireturn </A>
+<LI><A HREF="ref-_ishl.html">  ishl </A>
+<LI><A HREF="ref-_ishr.html">  ishr </A>
+<LI><A HREF="ref-_istore.html">  istore </A>
+<LI><A HREF="ref--37.html">  istore_&lt;n&gt; </A>
+<LI><A HREF="ref-_isub.html">  isub </A>
+<LI><A HREF="ref-_iushr.html">  iushr </A>
+<LI><A HREF="ref-_ixor.html">  ixor </A>
+<LI><A HREF="ref-_jsr.html">  jsr </A>
+<LI><A HREF="ref-_jsr_w.html">  jsr_w </A>
+<LI><A HREF="ref-_l2d.html">  l2d </A>
+<LI><A HREF="ref-_l2f.html">  l2f </A>
+<LI><A HREF="ref-_l2i.html">  l2i </A>
+<LI><A HREF="ref-_ladd.html">  ladd </A>
+<LI><A HREF="ref-_laload.html">  laload </A>
+<LI><A HREF="ref-_land.html">  land </A>
+<LI><A HREF="ref--38.html">  lastore </A>
+<LI><A HREF="ref-_lcmp.html">  lcmp </A>
+<LI><A HREF="ref--39.html">  lconst_&lt;l&gt; </A>
+<LI><A HREF="ref-_ldc.html">  ldc </A>
+<LI><A HREF="ref-_ldc_w.html">  ldc_w </A>
+<LI><A HREF="ref-ldc2_w.html"> ldc2_w </A>
+<LI><A HREF="ref-_ldiv.html">  ldiv </A>
+<LI><A HREF="ref-lload.html"> lload </A>
+<LI><A HREF="ref--40.html">  lload_&lt;n&gt; </A>
+<LI><A HREF="ref-_lmul.html">  lmul </A>
+<LI><A HREF="ref-_lneg.html">  lneg </A>
+<LI><A HREF="ref--41.html">  lookupswitch </A>
+<LI><A HREF="ref-_lor.html">  lor </A>
+<LI><A HREF="ref-_lrem.html">  lrem </A>
+<LI><A HREF="ref--42.html">  lreturn </A>
+<LI><A HREF="ref-_lshl.html">  lshl </A>
+<LI><A HREF="ref-_lshr.html">  lshr </A>
+<LI><A HREF="ref-_lstore.html">  lstore </A>
+<LI><A HREF="ref--43.html">  lstore_&lt;n&gt; </A>
+<LI><A HREF="ref-_lsub.html">  lsub </A>
+<LI><A HREF="ref-_lushr.html">  lushr </A>
+<LI><A HREF="ref-_lxor.html">  lxor </A>
+<LI><A HREF="ref--44.html">  monitorenter </A>
+<LI><A HREF="ref--45.html">  monitorexit </A>
+<LI><A HREF="ref--46.html">   multianewarray </A>
+<LI><A HREF="ref-new.html"> new </A>
+<LI><A HREF="ref-newarray.html"> newarray </A>
+<LI><A HREF="ref-nop.html"> nop </A>
+<LI><A HREF="ref-_pop.html">  pop </A>
+<LI><A HREF="ref-pop2.html"> pop2 </A>
+<LI><A HREF="ref-putfield.html"> putfield </A>
+<LI><A HREF="ref-putstati.html"> putstatic </A>
+<LI><A HREF="ref-ret.html"> ret </A>
+<LI><A HREF="ref-return.html"> return </A>
+<LI><A HREF="ref-saload.html"> saload </A>
+<LI><A HREF="ref-sastore.html"> sastore </A>
+<LI><A HREF="ref-sipush.html"> sipush </A>
+<LI><A HREF="ref-swap.html"> swap </A>
+<LI><A HREF="ref-tableswi.html"> tableswitch </A>
+<LI><A HREF="ref-wide.html"> wide </A>
+</UL>
+<hr size=4>
+</body></html>
+<h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

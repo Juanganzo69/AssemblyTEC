@@ -1,0 +1,101 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  goto</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--19.html">prev</A>
+ <A HREF="ref-_goto_w.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ goto</H6>
+<b></b><p>
+<b><center></b><i> branch to address</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    goto &lt;label&gt;
+</font></pre>
+&lt;label&gt;
+is a label name. To define the location of the label, use the &lt;label&gt;
+name followed by a colon:
+
+<pre><font size=-1>
+&lt;label&gt;:
+</font></pre>
+&lt;label&gt;
+then becomes associated the address of the following instruction. Labels can
+only be assigned one location in a method. On the other hand, a single
+&lt;label&gt; can be the target of multiple branch instructions.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Causes execution to branch to the instruction at the address (<i>pc</i>
++ <i>branchoffset</i>), where <i>pc</i> is the address of the <tt>goto</tt>
+opcode in the bytecode and <i>branchoffset</i> is a 16-bit signed integer
+parameter that immediately follows the <tt>goto</tt> opcode in the bytecode. In
+Jasmin, <i>branchoffset</i> is computed for you using the address associated
+with &lt;label&gt;.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+;
+; This is like the Java code:
+;     while (true) { i++; }
+
+Label:
+   incr 1 1       ; Increment local variable 1 by 1
+   goto Label     ; jump back to Label
+</font></pre>
+<p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">goto
+opcode = 0xA7 (167)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s2 
+<BR></TD>
+<TD colspan=1 align="left"><i>branchoffset</i>
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>goto_w</tt>, <tt>jsr</tt>, <tt>jsr_w</tt><p>
+<b>Notes</b><p>
+<b></b>Addresses are measured in bytes from the start of the bytecode - i.e.
+address 0 is the first byte in the bytecode of the currently executing method.
+The maximum address in a method is 65535.<p>
+<P><hr size=4>
+<A HREF="ref--19.html">prev</A>
+ <A HREF="ref-_goto_w.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

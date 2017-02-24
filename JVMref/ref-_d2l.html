@@ -1,0 +1,91 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  d2l</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_d2i.html">prev</A>
+ <A HREF="ref-_dadd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ d2l</H6>
+<b></b><p>
+<b><center></b><i> convert double to long integer</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    d2l
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">double-word1
+<BR></TD>
+<TD colspan=1 align="left">long-word1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">double-word2
+<BR></TD>
+<TD colspan=1 align="left">long-word2
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>Description</b><p>
+<b></b>Pops a two-word double precision floating point number off of the
+operand stack, converts it into a 64-bit long integer, and pushes the resulting
+two-word long onto the stack. <p>
+Rounding is done using IEEE 754 round-to-nearest mode. The fractional part is
+lost by rounding towards zero, so (long)-3.14 becomes -3.<p>
+If the original double value is NaN, the result is 0. If the value is too large
+to be represented as an integer, or if it is positive infinity, the result is
+the largest possible long integer Long.MAX_VALUE. If the value is too small
+(i.e. a negative value of large magnitude, or negative infinity) then the
+result is the most negative long integer Long.MIN_VALUE. <p>
+In some implementations, this may be coded using the C casting mechanism, e.g.
+
+<pre><font size=-1>
+void d2l(double d, int &amp;l_high, int &amp;l_low)
+{
+    l_low = (unsigned int)d;
+	l_high = (unsigned int)(d / 2**32);
+}
+</font></pre>
+where
+l_low and l_high are respectively the least significant and most significant
+32-bit words of the long.<p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">d2l
+opcode = 0x8F (143)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>d2i</tt>, <tt>d2f</tt><p>
+<P><hr size=4>
+<A HREF="ref-_d2i.html">prev</A>
+ <A HREF="ref-_dadd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

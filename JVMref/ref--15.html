@@ -1,0 +1,114 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  fconst_&lt;f&gt;</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_fcmpl.html">prev</A>
+ <A HREF="ref-_fdiv.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ fconst_&lt;f&gt;</H6>
+<b></b><p>
+<b><center></b><i> push the single float 0.0, 1.0 or 2.0</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+    fconst_0
+or
+    fconst_1
+or
+    fconst_2
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">&lt;f&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>fconst_&lt;f&gt;</tt> represents the series of opcodes
+<tt>fconst</tt>_0, <tt>fconst</tt>_1, and <tt>fconst</tt>_2 that are used to
+push the constant single-precision floats 0.0, 1.0 and 2.0 onto the stack.<p>
+For example, to push the single-precision float zero onto the stack, use:
+
+<pre><font size=-1>
+
+    fconst_0 ; push single-precision float 0 onto the stack
+
+</font></pre>
+Note
+that you could also use:
+
+<pre><font size=-1>
+
+    ldc 0.0  ; push the float 0.0 onto the stack
+
+</font></pre>
+although
+this instruction takes more space in the class file and is also less
+efficient.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+fconst_0    ; push the float 0.0 onto the stack
+fconst_1    ; push the float 1.0 onto the stack
+fconst_2    ; push the float 2.0 onto the stack
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">fconst_0
+opcode = 0x0B (11)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">fconst_1
+opcode = 0x0C (12)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">fconst_2
+opcode = 0x0D (13)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>bipush</tt>, <tt>sipush</tt>, <tt>ldc</tt>, <tt>ldc_w</tt>,
+<tt>ldc2_w</tt>, <tt>aconst_null</tt>, <tt>iconst_m1</tt>,
+<tt>lconst_&lt;l&gt;</tt> <tt>iconst_&lt;n&gt;</tt>, <tt>lconst_&lt;l&gt;</tt>,
+<tt>dconst_&lt;d&gt;</tt><p>
+<P><hr size=4>
+<A HREF="ref-_fcmpl.html">prev</A>
+ <A HREF="ref-_fdiv.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

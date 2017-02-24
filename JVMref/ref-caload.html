@@ -1,0 +1,101 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - caload</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--5.html">prev</A>
+ <A HREF="ref--6.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+caload</H6>
+<b></b><p>
+<b><center></b><i> retrieve character from array</i><p>
+<i></center></i><b> Jasmin Syntax</b><p>
+<b></b>
+
+<pre><font size=-1>
+    caload
+</font></pre>
+<b></b><p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">index
+<BR></TD>
+<TD colspan=1 align="left">value
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">arrayref
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Retrieves a character from an array of characters and pushes it on the
+operand stack. <i>arrayref</i> is a reference to an array of chars.
+<i>index</i> is an int. The <i>arrayref</i> and <i>index</i> are removed from
+the stack, and the 16-bit unsigned Unicode character at the given <i>index</i>
+in the array is retrieved, zero extended to a 32-bit int, and pushed onto the
+stack.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+; This is like the Java code:
+;     char x = arr[0];
+; where x is local variable 2 and arr is a
+; char array in local variable 1
+aload_1       ; load local variable 1 onto the stack
+iconst_0      ; push the integer 0 onto the stack
+caload        ; retrieve the entry
+istore_2      ; store the entry in local variable 2
+</font></pre>
+<b>
+Exceptions</b><p>
+<b></b>NullPointerException - <i>arrayref</i> is <tt>null</tt><p>
+ArrayIndexOutOfBoundsException - <i>index</i> is &lt; 0 or &gt;=
+<tt>arrayref.length</tt><p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">caload
+opcode = 0x34 (52)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>iaload</tt>, <tt>laload</tt>, <tt>faload</tt>, <tt>daload</tt>,
+<tt>aaload</tt>, <tt>baload</tt>, <tt>saload</tt>, <tt>iastore</tt>,
+<tt>lastore</tt>, <tt>fastore</tt>, <tt>dastore</tt>, <tt>aastore</tt>,
+<tt>bastore</tt>, <tt>castore</tt>, <tt>sastore</tt><p>
+<b> Notes</b><p>
+<b></b>Array indices start at 0 (the first entry in the array is at
+<i>index</i> 0).<p>
+<P><hr size=4>
+<A HREF="ref--5.html">prev</A>
+ <A HREF="ref--6.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,90 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  bipush</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--4.html">prev</A>
+ <A HREF="ref--5.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ bipush</H6>
+<b></b><p>
+<b><center></b><i> push one-byte signed integer</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    bipush &lt;n&gt;
+
+</font></pre>
+&lt;n&gt;
+is an integer &gt;= -128 and &lt;= 127 that is pushed onto the stack.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">&lt;n&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>bipush</tt> takes a single parameter, &lt;n&gt; (an 8-bit signed
+integer), sign extends it to a 32-bit int, and pushes the resulting int value
+onto the operand stack.<p>
+<tt>bipush</tt> is typically  more efficient than <tt>ldc</tt>. It also
+occupies fewer bytes in the class file. <p>
+<b>Example</b>
+
+<pre><font size=-1>
+bipush    0x10    ; push the value 0x10 (16) onto the operand stack
+</font></pre>
+<b>Bytecode</b><p>
+<b></b>The <tt>bipush</tt> opcode is followed in the bytecode by an 8-bit
+signed byte specifying the integer value to push.
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b> Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">bipush
+opcode = 0x10 (16)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s1 
+<BR></TD>
+<TD colspan=1 align="left">&lt;n&gt;
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>sipush</tt>, <tt>ldc</tt>, <tt>ldc_w</tt>, <tt>ldc2_w</tt>,
+<tt>aconst_null</tt>, <tt>iconst_m1</tt>, <tt>iconst_&lt;n&gt;</tt>,
+<tt>lconst_&lt;l&gt;</tt>, <tt>fconst_&lt;f&gt;</tt>,
+<tt>dconst_&lt;d&gt;</tt><p>
+<P><hr size=4>
+<A HREF="ref--4.html">prev</A>
+ <A HREF="ref--5.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

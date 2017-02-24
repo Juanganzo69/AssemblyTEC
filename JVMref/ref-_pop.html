@@ -1,0 +1,79 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  pop</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-nop.html">prev</A>
+ <A HREF="ref-pop2.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ pop</H6>
+<b></b><p>
+<b><center></b><i>discard  top word on stack</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    pop
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">item
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Pops the top single-word item off the stack and discards it. <p>
+<b> Example</b>
+
+<pre><font size=-1>
+invokevirtual Myclass/test()Z  ; call boolean Myclass.test();
+pop                            ; discard the boolean result
+</font></pre>
+<p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">pop
+opcode = 0x57 (87)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>pop2</tt><p>
+<b> Notes</b><p>
+<b></b>1. Use <tt>pop2</tt> to remove long integers and doubles from the stack
+(using <tt>pop</tt> when the top item on the stack is a long integer or double
+will cause a verification error).<p>
+2. Note there is no matching "push" instruction. Use <tt>bipush</tt>,
+<tt>sipush</tt>, one of the <p>
+<P><hr size=4>
+<A HREF="ref-nop.html">prev</A>
+ <A HREF="ref-pop2.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

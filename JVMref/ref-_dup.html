@@ -1,0 +1,109 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  dup</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_dsub.html">prev</A>
+ <A HREF="ref-_dup2.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ dup</H6>
+<b></b><p>
+<b><center></b><i> duplicate top single-word item on the stack</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    dup
+
+</font></pre>
+<b>
+Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">item
+<BR></TD>
+<TD colspan=1 align="left">item
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">item
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>This pops the top single-word value off the operand stack, and then
+pushes that value twice - i.e. it makes an extra copy of the top item on the
+stack.<p>
+This instruction cannot be used to duplicate two-word items (longs or doubles)
+- use <tt>dup2</tt> instead.<p>
+<b>Example</b>
+
+<pre><font size=-1>
+; This is like the java expression:
+;
+;   StringBuffer x = new StringBuffer();
+;
+
+; Make a new StringBuffer object and leave a reference to it
+; on the stack:
+new java/lang/StringBuffer
+
+; [ Stack now contains: objectref ]
+
+; Duplicate the object reference:
+dup
+
+; [ Stack now contains: objectref objectref ]
+
+; Invoke the object's initializer:
+invokespecial java/lang/StringBuffer/&lt;init&gt;()V
+
+; [ Stack now contains: objectref ]
+
+; Store the objectref in local variable 1.
+astore_1
+
+; [ Stack is now empty. ]
+
+</font></pre>
+<b>
+Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">dup
+opcode = 0x59 (89)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>dup2</tt>, <tt>dup_x1</tt>, <tt>dup2_x1</tt>, <tt>dup2_x2</tt><p>
+<P><hr size=4>
+<A HREF="ref-_dsub.html">prev</A>
+ <A HREF="ref-_dup2.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,127 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference - iinc</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-ifnull.html">prev</A>
+ <A HREF="ref-iload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+iinc</H6>
+<b></b><p>
+<b><center></b><i> increment integer in local variable</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    iinc &lt;varnum&gt; &lt;n&gt;
+or
+    wide
+    iinc &lt;varnum&gt; &lt;n&gt;
+
+</font></pre>
+In
+the first form, &lt;varnum&gt; is an unsigned integer in the range 0 to 0xFF
+and &lt;n&gt; is a signed integer in the range -128 to 127. In the second
+(wide) form, &lt;varnum&gt; is an unsigned integer in the range 0 to 0xFFFF and
+&lt;n&gt; is a signed integer in the range -32768 to &lt;= 32767.<p>
+<b>Stack
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b><tt>iinc</tt> increments the int held in the local variable
+&lt;varnum&gt; by &lt;n&gt;. The <tt>iinc</tt> instruction takes two
+parameters: &lt;varnum&gt; is an unsigned integer which indicates which local
+variable should be used. &lt;n&gt; is the integer amount to increment or
+decrement the variable by. &lt;varnum&gt; must be a valid local variable number
+in the current method's frame.<p>
+<b> Example</b>
+
+<pre><font size=-1>
+iinc 1 10       ; increment local variable 1 by 10.
+iinc 1 -1       ; decrement local variable 1 by 1.
+</font></pre>
+<b>
+Bytecode</b><p>
+<b></b>For local variable numbers in the range 0-255, and values of &lt;n&gt;
+in the range -128 to 127, use:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">iinc
+opcode = 0x84 (132)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">&lt;varnum&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+s1 
+<BR></TD>
+<TD colspan=1 align="left">&lt;n&gt;
+<BR></TD></TR></TABLE>There
+is also a <tt>wide</tt> format for this instruction, which supports access to
+all local variables from 0 to 65535, and values of &lt;n&gt; between -32768 and
+32767:
+<TABLE BORDER>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+<BR></TD>
+<TD colspan=1 align="left">wide
+opcode = 0xC4 (196)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u1
+
+<BR></TD>
+<TD colspan=1 align="left">iinc
+opcode = 0x84 (132)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">u2
+<BR></TD>
+<TD colspan=1 align="left">&lt;varnum&gt;
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">s2
+
+<BR></TD>
+<TD colspan=1 align="left">&lt;n&gt;
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>wide</tt><p>
+<P><hr size=4>
+<A HREF="ref-ifnull.html">prev</A>
+ <A HREF="ref-iload.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

@@ -1,0 +1,80 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  d2f</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref--7.html">prev</A>
+ <A HREF="ref-_d2i.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ d2f</H6>
+<b></b><p>
+<b><center></b><i> convert double to float</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    d2f
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">double-word1
+<BR></TD>
+<TD colspan=1 align="left">float-result
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">double-word2
+
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Pops a two-word double precision floating point number off of the
+operand stack, casts it into a single precision float, and pushes the resulting
+float back onto the stack. There is a loss of precision and range in the
+result.<p>
+This conversion is done in accordance with IEEE 754 specifications, with
+rounding using IEEE 754 round-to-nearest mode. <p>
+The sign of the value if preserved. A value which is too small to be
+represented as a float is converted to positive or negative zero. A value that
+is too large to be represented as a float is converted to positive infinity or
+negative infinity. If the value was NaN, the result is NaN.<p>
+<b>Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">d2f
+opcode = 0x90 (144)
+<BR></TD></TR></TABLE><b>See
+Also</b><p>
+<b></b><tt>d2i</tt>, <tt>d2l</tt><p>
+<P><hr size=4>
+<A HREF="ref--7.html">prev</A>
+ <A HREF="ref-_d2i.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+

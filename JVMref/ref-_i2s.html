@@ -1,0 +1,79 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Java Virtual Machine - Online Reference -  i2s</TITLE></HEAD>
+<BODY BGCOLOR= white>
+<A HREF="ref-_i2l.html">prev</A>
+ <A HREF="ref-_iadd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+<hr size=4>
+<H6>
+ i2s</H6>
+<b></b><p>
+<b><center></b><i> convert integer to short integer</i><p>
+<i></center></i><b>Jasmin Syntax</b>
+
+<pre><font size=-1>
+
+    i2s
+
+</font></pre>
+<b>Stack<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b>B</b><b>efore </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>After</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">value
+<BR></TD>
+<TD colspan=1 align="left">result
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">...
+<BR></TD>
+<TD colspan=1 align="left">...
+<BR></TD></TR></TABLE><b>
+Description</b><p>
+<b></b>Converts an integer to a signed short.  A 32-bit int is popped off the
+stack, the top 16 bits are set to zero, and the resulting value is then sign
+extended to an int.  The int result is pushed back onto the stack. <p>
+i2s is used in Java where there is an explicit case between an int and a short.
+Notice that i2s can cause a change in sign. For example, in the code:
+
+<pre><font size=-1>
+    int x = -40000;
+    short s = (short)x;
+</font></pre>
+The
+value of s is positive 25536, since the sign bit of x is lost in the
+conversion.<p>
+<b> Bytecode
+<TABLE BORDER></b>
+<TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<b> </b><b>Type </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+u1 
+<BR></TD>
+<TD colspan=1 align="left">i2s
+opcode = 0x93 (147)
+<BR></TD></TR></TABLE><b>
+See Also</b><p>
+<b></b><tt>i2b</tt>, <tt>i2c</tt><p>
+<P><hr size=4>
+<A HREF="ref-_i2l.html">prev</A>
+ <A HREF="ref-_iadd.html">next</A>
+ <A HREF="ref-Java.html">contents</A>
+ <A HREF="ref.html"></A>
+ <A HREF="ref-Contents.html"></A>
+ <A HREF="ref-Index.html"></A>
+</body></html><h6>
+<a href="http://www.ora.com/catalog/javavm">Java Virtual Machine</a>, 
+by Jon Meyer and Troy Downing, O'Reilly Associates
+</h6>
+
