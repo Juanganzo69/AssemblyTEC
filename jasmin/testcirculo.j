@@ -108,5 +108,17 @@ new Esfera1
 	;invokevirtual Esfera1/volumenvirtual()F
 	invokevirtual Esfera1/volumen()F
 	invokevirtual java/io/PrintStream/println(F)V
+
+	new EsferaHueca
+	dup
+	ldc 4.0
+	ldc 2.0
+	invokespecial EsferaHueca/<init>(FF)V
+	astore 4
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 4
+	invokevirtual EsferaHueca/area()F
+	invokevirtual java/io/PrintStream/println(F)V
 return
 .end method
