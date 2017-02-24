@@ -33,11 +33,9 @@
 
 	new circulo
 	dup
-
 	invokespecial circulo/<init>()V
 	astore_1
 	aload_1
-
 	ldc 2.0
 	invokevirtual circulo/setRadio(F)V
 
