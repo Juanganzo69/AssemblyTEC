@@ -18,6 +18,9 @@ Código basado en las clases de ensamblador de la carrera ISC.
   - Oprimir __ctrl+b__ y que se haga la magia!!  
   
 
+# PARA TODO EL MUNDO:  
+  
+
 >Consejo: Utilizar __Sublime Text__ para una mejor experiencia. Se recomienda descargar la sintaxis del jasmin. Ir a la url: <https://packagecontrol.io/installation> para instalar el paquete de control que te permitirá buscar e instalar paquetes. 
 Descargar la sintaxis del __Jasmin__: <https://packagecontrol.io/packages/Jasmin%20JVM%20Assembler>  
 Seguir los pasos y a programar!.
