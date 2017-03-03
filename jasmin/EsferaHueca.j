@@ -37,6 +37,21 @@
 	freturn
 .end method
 
+.method volumen()F
+	.limit stack 	4
+	.limit locals 	4
+		aload_0
+		invokespecial Esfera1/volumen()F
+		new Esfera1
+		dup
+		aload_0
+		getfield EsferaHueca/radioInterno F
+		invokespecial Esfera1/<init>(F)V
+		invokevirtual Esfera1/volumen()F
+		fsub
+		freturn
+.end method
+
 
 
 

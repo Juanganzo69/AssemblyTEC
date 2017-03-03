@@ -27,6 +27,16 @@
 		freturn
 	.end method
 
+	.method perimetro()F
+	.limit stack  4
+	.limit locals 4
+		aload_0
+		invokevirtual circulo/diametro()F
+		ldc 3.1416
+		fmul
+		freturn
+	.end method
+
 .method public static main([Ljava/lang/String;)V
 	.limit stack 4
 	.limit locals 4
@@ -43,5 +53,8 @@
 	aload_1
 	invokevirtual circulo/diametro()F
 	invokevirtual java/io/PrintStream/println(F)V
+
+
 return
 .end method
+
