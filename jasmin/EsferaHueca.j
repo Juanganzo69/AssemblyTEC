@@ -9,8 +9,8 @@
 .end method
 
 .method public <init>(FF)V
-	.limit stack 	2
-	.limit locals 	2
+	.limit stack 	4
+	.limit locals 	4
 	aload_0
 	invokespecial Esfera1/<init>()V
 	aload_0
