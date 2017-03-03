@@ -2,8 +2,8 @@
 .super java/lang/Object
 
 .method public static main([Ljava/lang/String;)V
-.limit stack 5
-.limit locals 5
+.limit stack 10
+.limit locals 10
 
 
 ;---------------------crear los objetos y agregarle radio(2) al constructor--------->
@@ -68,7 +68,7 @@ new Esfera1
 	invokevirtual Esfera1/volumen()F
 	invokevirtual java/io/PrintStream/println(F)V
 
-	new EsferaHueca
+new EsferaHueca
 	dup
 	ldc 4.0
 	ldc 2.0
@@ -83,6 +83,33 @@ new Esfera1
 	getstatic java/lang/System/out Ljava/io/PrintStream;
 	aload 4
 	invokevirtual EsferaHueca/volumen()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+new cilindro
+	dup
+	ldc 4.0
+	ldc 2.0
+	invokespecial cilindro/<init>(FF)V
+	astore 5
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 5
+	invokevirtual cilindro/areaBase()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 5
+	invokevirtual cilindro/areaLateral()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 5
+	invokevirtual cilindro/area()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 5
+	invokevirtual cilindro/volumen()F
 	invokevirtual java/io/PrintStream/println(F)V
 return
 .end method
