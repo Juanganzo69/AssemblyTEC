@@ -66,3 +66,19 @@ freturn
 		fmul
 		freturn
 .end method
+
+
+;<------------2*r*pi (para el area lateral)--------->
+.method areaLateralUno()F
+	.limit	stack	5
+	.limit	locals	5
+		aload_0
+		getfield circulopro/radio F
+		ldc 2.0
+		fmul
+		ldc 3.146
+		fmul
+		freturn
+.end method
+
+

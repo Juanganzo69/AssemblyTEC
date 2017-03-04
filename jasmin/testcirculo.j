@@ -2,8 +2,8 @@
 .super java/lang/Object
 
 .method public static main([Ljava/lang/String;)V
-.limit stack 10
-.limit locals 10
+.limit stack 15
+.limit locals 15
 
 
 ;---------------------crear los objetos y agregarle radio(2) al constructor--------->
@@ -44,7 +44,7 @@ invokevirtual circulopro/perimetro()F
 invokevirtual java/io/PrintStream/println(F)V
 
 
-
+;<----------------------Objeto esfera y sus funciones-------------------->
 new Esfera1
 	dup
 	invokespecial Esfera1/<init>()V
@@ -68,6 +68,8 @@ new Esfera1
 	invokevirtual Esfera1/volumen()F
 	invokevirtual java/io/PrintStream/println(F)V
 
+
+;<----------------------Objeto EsferaHueca y sus funciones-------------------->
 new EsferaHueca
 	dup
 	ldc 4.0
@@ -85,6 +87,7 @@ new EsferaHueca
 	invokevirtual EsferaHueca/volumen()F
 	invokevirtual java/io/PrintStream/println(F)V
 
+;<----------------------Objeto cilindro y sus funciones-------------------->
 new cilindro
 	dup
 	ldc 4.0
@@ -104,12 +107,66 @@ new cilindro
 
 	getstatic java/lang/System/out Ljava/io/PrintStream;
 	aload 5
+	invokevirtual cilindro/areaLateralreal()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 5
 	invokevirtual cilindro/area()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 5
+	invokevirtual cilindro/areaReal()F
 	invokevirtual java/io/PrintStream/println(F)V
 
 	getstatic java/lang/System/out Ljava/io/PrintStream;
 	aload 5
 	invokevirtual cilindro/volumen()F
 	invokevirtual java/io/PrintStream/println(F)V
+
+
+;<----------------------Objeto cono y sus funciones-------------------->
+new cono
+	dup
+	ldc 5.0
+	ldc 4.0
+	invokespecial cono/<init>(FF)V
+	astore 6
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 6
+	invokevirtual cono/radio()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 6
+	invokevirtual cono/cuadradoradio()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload 6
+	invokevirtual cono/cuadradoaltura()F
+	invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 6
+	 invokevirtual cono/generatriz()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 6
+	 invokevirtual cono/areaLateral()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 6
+	 invokevirtual cono/areaTotal()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 6
+	 invokevirtual cono/volumen()F
+	 invokevirtual java/io/PrintStream/println(F)V
 return
 .end method
