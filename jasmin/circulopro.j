@@ -68,7 +68,7 @@ freturn
 .end method
 
 
-;<------------2*r*pi (para el area lateral)--------->
+;<------------2*r*pi (para el area lateral) segunda forma para sacar el arealateral--------->
 .method areaLateralUno()F
 	.limit	stack	5
 	.limit	locals	5

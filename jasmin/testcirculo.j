@@ -139,16 +139,6 @@ new cono
 	invokevirtual cono/radio()F
 	invokevirtual java/io/PrintStream/println(F)V
 
-	getstatic java/lang/System/out Ljava/io/PrintStream;
-	aload 6
-	invokevirtual cono/cuadradoradio()F
-	invokevirtual java/io/PrintStream/println(F)V
-
-	getstatic java/lang/System/out Ljava/io/PrintStream;
-	aload 6
-	invokevirtual cono/cuadradoaltura()F
-	invokevirtual java/io/PrintStream/println(F)V
-
 	 getstatic java/lang/System/out Ljava/io/PrintStream;
 	 aload 6
 	 invokevirtual cono/generatriz()F
