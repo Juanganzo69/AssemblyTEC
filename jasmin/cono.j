@@ -33,37 +33,30 @@
 	freturn
 .end method
 
-.method public cuadradoradio()F
+.method public sumaDeCuadrados()F
 .limit stack  10
 .limit locals 10
 	aload_0
 	invokevirtual cono/radio()F
 	dup
 	fmul
-	freturn
-.end method
-
-.method public cuadradoaltura()F
-.limit stack  10
-.limit locals 10
 	aload_0
 	getfield cono/altura F
 	dup
 	fmul
+	fadd
 	freturn
 .end method
+
 
  .method public generatriz()F
  .limit stack  10
  .limit locals 10
  	aload_0
- 	invokevirtual cono/cuadradoaltura()F
- 	aload_0
- 	invokevirtual cono/cuadradoradio()F
- 	fadd
- 	 f2d
- 	 invokestatic java/lang/Math/sqrt(D)D
- 	 d2f
+ 	invokevirtual cono/sumaDeCuadrados()F
+ 	f2d
+ 	invokestatic java/lang/Math/sqrt(D)D
+ 	d2f
  	freturn
  .end method
 

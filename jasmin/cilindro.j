@@ -44,6 +44,7 @@
 	freturn
 .end method
 
+;<------------segunda forma para sacar el arealateral (buscar formula en internet)--------->
 .method public areaLateralreal()F
 	.limit stack  6
 	.limit locals 6
@@ -66,6 +67,7 @@
 	freturn
 .end method
 
+;<------------segunda forma para sacar el areafinal (buscar formula en internet/ da lo mismo)--------->
 .method public areaReal()F
 .limit stack  6
 .limit locals 6
