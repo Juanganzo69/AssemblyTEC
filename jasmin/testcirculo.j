@@ -181,5 +181,33 @@ new conosegundaforma
 	 aload 7
 	 invokevirtual conosegundaforma/volumen()F
 	 invokevirtual java/io/PrintStream/println(F)V
+
+;<----------------------Objeto cono y sus funciones (según Achach)-------------------->
+new conoPuntos
+	dup
+	ldc 4.0
+	ldc 10.0
+	invokespecial conoPuntos/<init>(FF)V
+	astore 8
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 8
+	 invokevirtual conoPuntos/generatriz()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 8
+	 invokevirtual conoPuntos/areaLateral()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 8
+	 invokevirtual conoPuntos/areaTotal()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 8
+	 invokevirtual conoPuntos/volumen()F
+	 invokevirtual java/io/PrintStream/println(F)V
 return
 .end method
