@@ -23,21 +23,11 @@
 	return
 .end method
 
-.method public radio()F
-.limit stack  10
-.limit locals 10
-	aload_0
-	invokespecial circulopro/diametro()F
-	ldc 2.0
-	fdiv
-	freturn
-.end method
-
 .method public sumaDeCuadrados()F
 .limit stack  10
 .limit locals 10
 	aload_0
-	invokevirtual cono/radio()F
+	getfield cono/radio F
 	dup
 	fmul
 	aload_0
@@ -64,7 +54,7 @@
  .limit stack  10
  .limit locals 10
  	aload_0
- 	invokevirtual cono/radio()F
+ 	getfield cono/radio F
  	ldc 3.1416
  	fmul
  	aload_0

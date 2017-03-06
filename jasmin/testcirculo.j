@@ -126,18 +126,13 @@ new cilindro
 	invokevirtual java/io/PrintStream/println(F)V
 
 
-;<----------------------Objeto cono y sus funciones-------------------->
+;<----------------------Objeto cono y sus funciones (mi forma)-------------------->
 new cono
 	dup
-	ldc 5.0
 	ldc 4.0
+	ldc 10.0
 	invokespecial cono/<init>(FF)V
 	astore 6
-
-	getstatic java/lang/System/out Ljava/io/PrintStream;
-	aload 6
-	invokevirtual cono/radio()F
-	invokevirtual java/io/PrintStream/println(F)V
 
 	 getstatic java/lang/System/out Ljava/io/PrintStream;
 	 aload 6
@@ -157,6 +152,34 @@ new cono
 	 getstatic java/lang/System/out Ljava/io/PrintStream;
 	 aload 6
 	 invokevirtual cono/volumen()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+;<----------------------Objeto cono y sus funciones (según Achach)-------------------->
+new conosegundaforma
+	dup
+	ldc 4.0
+	ldc 10.0
+	invokespecial conosegundaforma/<init>(FF)V
+	astore 7
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 7
+	 invokevirtual conosegundaforma/generatriz()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 7
+	 invokevirtual conosegundaforma/areaLateral()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 7
+	 invokevirtual conosegundaforma/areaTotal()F
+	 invokevirtual java/io/PrintStream/println(F)V
+
+	 getstatic java/lang/System/out Ljava/io/PrintStream;
+	 aload 7
+	 invokevirtual conosegundaforma/volumen()F
 	 invokevirtual java/io/PrintStream/println(F)V
 return
 .end method
