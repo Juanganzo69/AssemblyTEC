@@ -205,6 +205,10 @@ new conoPuntos
 	 invokevirtual conoPuntos/areaTotal()F
 	 invokevirtual java/io/PrintStream/println(F)V
 
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	ldc "Volumen :"
+	invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
 	 getstatic java/lang/System/out Ljava/io/PrintStream;
 	 aload 8
 	 invokevirtual conoPuntos/volumen()F
