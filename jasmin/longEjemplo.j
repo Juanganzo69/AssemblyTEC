@@ -13,8 +13,8 @@
 	ldc2_w 100
 	lstore_3
 
-	lload_3
 	lload_1
+	lload_3
 ;------Compara los dos long/double y bota de la pila todos los datos, entonces asigna un valor -1, 0 ó 1--------------
 	lcmp
 
