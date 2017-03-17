@@ -1,3 +1,4 @@
+;-----------Compara dos no enteros--------------
 .class public longEjemplo
 .super java/lang/Object
 
@@ -5,15 +6,19 @@
 .limit stack 8
 .limit locals 12
 
+;-----------Carga el 10, pero es un long/double, por lo tanto ocupa dos slots de la pila--------------
 	ldc2_w 10
 	lstore_1
+;-----------Carga el 100, pero como el anterior guardó en dos slots, se carga en el slot 3--------------
 	ldc2_w 100
 	lstore_3
 
 	lload_3
 	lload_1
+;------Compara los dos long/double y bota de la pila todos los datos, entonces asigna un valor -1, 0 ó 1--------------
 	lcmp
 
+;----------realiza la condición 100 > 10-----------
 	ifgt funciono
 
 nanais:
