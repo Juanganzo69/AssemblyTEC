@@ -6,9 +6,9 @@
 .limit locals 10
 
 	;cargar un numero del mes
-	ldc 8
-	istore_1
-	iload_1
+ldc 2
+istore_1
+iload_1
 
 	lookupswitch
 		1: 	Dias31
@@ -30,17 +30,21 @@
 				istore_2
 				iload_2
 				jsr PrintMe
+				goto fin
+
 			Dias30:
 				bipush 30
 				istore_2
 				iload_2
 				jsr PrintMe
+				goto fin
+
 			Dias31:
 				bipush 31
 				istore_2
 				iload_2
 				jsr PrintMe
-			return
+				goto fin
 
 			PrintMe:
 			    astore_1
@@ -53,5 +57,7 @@
 				getstatic java/lang/System/out Ljava/io/PrintStream;
 				ldc "En el numero del mes(1-12), favor de corregirlo "
 			    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+
+			fin:
 			    return
 .end method
