@@ -1,6 +1,17 @@
 .class public fibonacci
 .super java/lang/Object
 
+.method static run()I
+.limit stack  2
+.limit locals 2
+	bipush 6
+	bipush 9
+	imul
+
+	ireturn
+.end method
+
+
 .method public static main([Ljava/lang/String;)V
 .limit stack 10
 .limit locals 10
@@ -42,7 +53,12 @@ ciclo:
 	getstatic java/lang/System/out Ljava/io/PrintStream;
     ldc "Gracias por atender la clase..."
     invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
-    return
+
+    ;llamada a un metodo estatico
+    getstatic java/lang/System/out Ljava/io/PrintStream;
+    invokestatic fibonacci/run()I
+    invokevirtual java/io/PrintStream/println(I)V
+return
 
 PrintMe:
     astore 4
