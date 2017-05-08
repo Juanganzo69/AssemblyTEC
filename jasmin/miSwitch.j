@@ -6,7 +6,7 @@
 .limit locals 10
 
 	;cargar un numero del mes
-ldc 2
+ldc 12
 istore_1
 iload_1
 
