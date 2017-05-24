@@ -31,5 +31,10 @@
 	invokevirtual elipse/areaElipse()F
 	invokevirtual java/io/PrintStream/println(F)V
 
+	getstatic java/lang/System/out Ljava/io/PrintStream;
+	aload_1
+	invokevirtual elipse/excentricidadElipse()F
+	invokevirtual java/io/PrintStream/println(F)V
+
 return
 .end method

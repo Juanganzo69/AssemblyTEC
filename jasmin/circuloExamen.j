@@ -49,3 +49,21 @@ return
 ; 		fmul
 ; 		freturn
 ; .end method
+
+.method exentricidad()F
+.limit stack 6
+.limit locals 6
+	 aload_0
+	 getfield circuloExamen/a F
+	 dup
+	 fmul
+	 aload_0
+	 getfield circuloExamen/b F
+	 dup
+	 fmul
+	 fadd
+	 f2d
+	invokestatic java/lang/Math/sqrt(D)D
+	d2f
+freturn
+.end method

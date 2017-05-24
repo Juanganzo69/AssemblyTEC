@@ -29,4 +29,14 @@
 		freturn
 .end method
 
+.method excentricidadElipse()F
+	.limit stack  10
+	.limit locals 10
+	aload_0
+	getfield elipse/b F
+	aload_0
+	invokespecial elipse/exentricidad()F
+freturn
+.end method
+
 
